@@ -236,8 +236,8 @@
     "176769167824c721a8": {
       "type": "_blocks",
       "blocks": {
-        "ai_gen_block_d283036_AKrGyn": {
-          "type": "ai_gen_block_d283036",
+        "faq_accordion_AKrGyn": {
+          "type": "faq-accordion",
           "settings": {
             "heading": "Frequently Asked Questions",
             "heading_alignment": "center",
@@ -248,7 +248,7 @@
             "question_2": "How long does delivery take?",
             "answer_2": "<p>Ready To Ship orders are delivered within <strong>8–9 business days</strong> after dispatch, depending on your location.</p>",
             "question_3": "Can a Ready To Ship ring be resized?",
-            "answer_3": "<p>Yes, limited resizing of <strong>up to one size up or down</strong> may be possible. However, this depends on the ring design.<br/><br/>Please contact us to verify before placing your order at <a><strong>support@crownmoissanite.com</strong></a></p>",
+            "answer_3": "<p>Yes, limited resizing of <strong>up to one size up or down</strong> may be possible. However, this depends on the ring design.<br/><br/>Please contact us to verify before placing your order at <a href=\"mailto:support@crownmoissanite.com\"><strong>support@crownmoissanite.com</strong></a></p>",
             "question_4": "Can Ready To Ship items be customized?",
             "answer_4": "<p>No, these items cannot be customized as they are already made and prepared for immediate shipping.</p>",
             "question_5": "Are Ready To Ship items brand new?",
@@ -278,14 +278,13 @@
             "answer_size": 14,
             "answer_padding": 18,
             "answer_color": "#111111",
-            "answer_background": "#ffffff",
-            "desktop_width_percent": 100
+            "answer_background": "#ffffff"
           },
           "blocks": {}
         }
       },
       "block_order": [
-        "ai_gen_block_d283036_AKrGyn"
+        "faq_accordion_AKrGyn"
       ],
       "settings": {}
     }
