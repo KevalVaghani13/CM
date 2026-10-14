@@ -8,7 +8,7 @@
 
 {%-
   liquid
-  assign = line_item_index = line_item.index | plus: 1
+  assign line_item_index = line_item.index | plus: 1
 -%}
 
 <div class="cart-item" id="CartItem-{{- line_item_index -}}">

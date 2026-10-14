@@ -1,129 +1,70 @@
-{% doc %}
-  @prompt
-    FAQ ke liye ek question and answer karta ek setion banna hai drope down mw anser chiye , Give me 10 question and answer section 
-{% enddoc %}
-{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+{%- comment -%}
+  FAQ accordion theme block.
+  Up to 10 question/answer pairs. Per-instance styling is passed to
+  component-faq-accordion.css through CSS custom properties; behavior lives in
+  faq-accordion.js (<faq-accordion> custom element).
+{%- endcomment -%}
 
-{% style %}
-  .ai-faq-container-{{ ai_gen_id }} {
-    display: block;
-    width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: {{ block.settings.section_padding }}px 20px;
-  }
+{{- 'component-faq-accordion.css' | asset_url | stylesheet_tag -}}
+<script src="{{- 'faq-accordion.js' | asset_url -}}" defer="defer"></script>
 
-  .ai-faq-heading-{{ ai_gen_id }} {
-    text-align: {{ block.settings.heading_alignment }};
-    color: {{ block.settings.heading_color }};
-    font-size: {{ block.settings.heading_size }}px;
-    margin-bottom: 30px;
-  }
+{%- liquid
+  assign faq_id = block.id | replace: '_', '' | downcase
+-%}
 
-  .ai-faq-list-{{ ai_gen_id }} {
-    display: flex;
-    flex-direction: column;
-    gap: {{ block.settings.item_spacing }}px;
-  }
+<faq-accordion
+  class="faq-accordion"
+  data-allow-multiple="{{- block.settings.allow_multiple -}}"
+  style="
+    --faq-section-padding: {{ block.settings.section_padding }}px;
+    --faq-heading-align: {{ block.settings.heading_alignment }};
+    --faq-heading-color: {{ block.settings.heading_color }};
+    --faq-heading-size: {{ block.settings.heading_size }}px;
+    --faq-item-spacing: {{ block.settings.item_spacing }}px;
+    --faq-border-color: {{ block.settings.border_color }};
+    --faq-border-radius: {{ block.settings.border_radius }}px;
+    --faq-item-background: {{ block.settings.item_background }};
+    --faq-question-padding: {{ block.settings.question_padding }}px;
+    --faq-question-background: {{ block.settings.question_background }};
+    --faq-question-hover-background: {{ block.settings.question_hover_background }};
+    --faq-question-color: {{ block.settings.question_color }};
+    --faq-question-size: {{ block.settings.question_size }}px;
+    --faq-icon-color: {{ block.settings.icon_color }};
+    --faq-answer-background: {{ block.settings.answer_background }};
+    --faq-answer-color: {{ block.settings.answer_color }};
+    --faq-answer-size: {{ block.settings.answer_size }}px;
+    --faq-answer-padding: {{ block.settings.answer_padding }}px;
+  "
+  {{ block.shopify_attributes }}
+>
+  {%- if block.settings.heading != blank -%}
+    <h2 class="faq-accordion__heading">{{ block.settings.heading }}</h2>
+  {%- endif -%}
 
-  .ai-faq-item-{{ ai_gen_id }} {
-    border: 1px solid {{ block.settings.border_color }};
-    border-radius: {{ block.settings.border_radius }}px;
-    overflow: hidden;
-    background-color: {{ block.settings.item_background }};
-  }
-
-  .ai-faq-question-{{ ai_gen_id }} {
-    width: 100%;
-    padding: {{ block.settings.question_padding }}px;
-    background-color: {{ block.settings.question_background }};
-    color: {{ block.settings.question_color }};
-    border: none;
-    text-align: left;
-    font-size: {{ block.settings.question_size }}px;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: background-color 0.3s ease;
-  }
-
-  .ai-faq-question-{{ ai_gen_id }}:hover {
-    background-color: {{ block.settings.question_hover_background }};
-  }
-
-  .ai-faq-icon-{{ ai_gen_id }} {
-    width: 20px;
-    height: 20px;
-    flex-shrink: 0;
-    transition: transform 0.3s ease;
-    color: {{ block.settings.icon_color }};
-  }
-
-  .ai-faq-item-{{ ai_gen_id }}.active .ai-faq-icon-{{ ai_gen_id }} {
-    transform: rotate(180deg);
-  }
-
-  .ai-faq-answer-{{ ai_gen_id }} {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease, padding 0.3s ease;
-    background-color: {{ block.settings.answer_background }};
-    color: {{ block.settings.answer_color }};
-    font-size: {{ block.settings.answer_size }}px;
-    line-height: 1.6;
-  }
-
-  .ai-faq-item-{{ ai_gen_id }}.active .ai-faq-answer-{{ ai_gen_id }} {
-    max-height: 500px;
-    padding: {{ block.settings.answer_padding }}px;
-  }
-
-  @media screen and (max-width: 749px) {
-    .ai-faq-heading-{{ ai_gen_id }} {
-      font-size: {{ block.settings.heading_size | times: 0.8 }}px;
-    }
-
-    .ai-faq-question-{{ ai_gen_id }} {
-      font-size: {{ block.settings.question_size | times: 0.9 }}px;
-      padding: {{ block.settings.question_padding | times: 0.8 }}px;
-    }
-
-    .ai-faq-answer-{{ ai_gen_id }} {
-      font-size: {{ block.settings.answer_size | times: 0.9 }}px;
-    }
-
-    .ai-faq-item-{{ ai_gen_id }}.active .ai-faq-answer-{{ ai_gen_id }} {
-      padding: {{ block.settings.answer_padding | times: 0.8 }}px;
-    }
-  }
-{% endstyle %}
-
-<faq-accordion-{{ ai_gen_id }} class="ai-faq-container-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
-  {% if block.settings.heading != blank %}
-    <h2 class="ai-faq-heading-{{ ai_gen_id }}">{{ block.settings.heading }}</h2>
-  {% endif %}
-
-  <div class="ai-faq-list-{{ ai_gen_id }}">
-    {% for i in (1..10) %}
-      {% liquid
+  <div class="faq-accordion__list">
+    {%- for i in (1..10) -%}
+      {%- liquid
         assign question_key = 'question_' | append: i
         assign answer_key = 'answer_' | append: i
         assign question = block.settings[question_key]
         assign answer = block.settings[answer_key]
-      %}
+      -%}
 
-      {% if question != blank %}
-        <div class="ai-faq-item-{{ ai_gen_id }}" data-faq-item>
+      {%- if question != blank -%}
+        <div class="faq-accordion__item" data-faq-item>
           <button
-            class="ai-faq-question-{{ ai_gen_id }}"
+            type="button"
+            class="faq-accordion__question"
+            id="FaqQuestion-{{ faq_id }}-{{ i }}"
             aria-expanded="false"
+            aria-controls="FaqAnswer-{{ faq_id }}-{{ i }}"
             data-faq-button
           >
             <span>{{ question }}</span>
             <svg
-              class="ai-faq-icon-{{ ai_gen_id }}"
+              class="faq-accordion__icon"
+              aria-hidden="true"
+              focusable="false"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="none"
@@ -135,56 +76,21 @@
               <polyline points="6 9 12 15 18 9"></polyline>
             </svg>
           </button>
-          <div class="ai-faq-answer-{{ ai_gen_id }}" data-faq-answer>
-            {{ answer }}
+          <div
+            class="faq-accordion__answer"
+            id="FaqAnswer-{{ faq_id }}-{{ i }}"
+            role="region"
+            aria-labelledby="FaqQuestion-{{ faq_id }}-{{ i }}"
+          >
+            <div class="faq-accordion__answer-inner">
+              <div class="faq-accordion__answer-content">{{ answer }}</div>
+            </div>
           </div>
         </div>
-      {% endif %}
-    {% endfor %}
+      {%- endif -%}
+    {%- endfor -%}
   </div>
-</faq-accordion-{{ ai_gen_id }}>
-
-<script>
-  (function() {
-    class FaqAccordion{{ ai_gen_id }} extends HTMLElement {
-      constructor() {
-        super();
-      }
-
-      connectedCallback() {
-        this.items = this.querySelectorAll('[data-faq-item]');
-        this.setupEventListeners();
-      }
-
-      setupEventListeners() {
-        this.items.forEach((item) => {
-          const button = item.querySelector('[data-faq-button]');
-          
-          button.addEventListener('click', () => {
-            const isActive = item.classList.contains('active');
-            
-            if ({{ block.settings.allow_multiple | json }}) {
-              item.classList.toggle('active');
-              button.setAttribute('aria-expanded', !isActive);
-            } else {
-              this.items.forEach((otherItem) => {
-                if (otherItem !== item) {
-                  otherItem.classList.remove('active');
-                  otherItem.querySelector('[data-faq-button]').setAttribute('aria-expanded', 'false');
-                }
-              });
-              
-              item.classList.toggle('active');
-              button.setAttribute('aria-expanded', !isActive);
-            }
-          });
-        });
-      }
-    }
-
-    customElements.define('faq-accordion-{{ ai_gen_id }}', FaqAccordion{{ ai_gen_id }});
-  })();
-</script>
+</faq-accordion>
 
 {% schema %}
 {
