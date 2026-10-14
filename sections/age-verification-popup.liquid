@@ -1,0 +1,201 @@
+{{- 'section-age-verification-popup.css' | asset_url | stylesheet_tag -}}
+<script src='{{- 'age-verification-popup.js' | asset_url -}}' defer='defer'></script>
+
+<age-verification-popup id='AgeVerificationModal-{{- section.id -}}' class='age-verification-popup'
+  {% if request.design_mode and section.settings.customizer_visible %} data-open-in-design-mode='true'{% endif %}
+>
+  <div
+    class='age-verification-popup__wrapper color-body-background {{ section.settings.color_scheme_text }} {{ section.settings.color_scheme_background }}'
+    aria-modal='true'
+    role='dialog'
+    tabindex='-1'
+  >
+    <div class='age-verification-popup__content'>
+      {%- if section.settings.title != blank -%}
+        <h6 class='age-verification-popup__title h2'>
+          {{- section.settings.title -}}
+        </h6>
+      {%- endif -%}
+      <div class='age-verification-popup__actions'>
+        {%-
+          render 'button',
+          id: "ModalClose-{{- section.id -}}"
+          type: 'button',
+          class: 'button',
+          button_style: section.settings.button_confirm_style,
+          value: section.settings.button_confirm
+        -%}
+        {%- render 'button',
+          type: 'link',
+          class: 'button',
+          button_style: section.settings.button_decline_style,
+          value: section.settings.button_decline,
+          href: section.settings.button_decline_url
+        -%}
+      </div>
+      {%- if section.settings.content != blank -%}
+        <div class='age-verification-popup__entry'>
+          {{-
+            section.settings.content
+            | replace: '<p>', ''
+            | replace: '</p>', ''
+          -}}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</age-verification-popup>
+
+{% schema %}
+{
+  "name": "t:sections.age-verification-popup.name",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "customizer_visible",
+      "label": "t:sections.age-verification-popup.settings.customizer_visible.label",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "t:sections.global.settings.header_color_scheme.content"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme_text",
+      "label": "t:sections.global.settings.color_scheme_text.label",
+      "options": [
+        {
+          "value": "text-colors-default",
+          "label": "t:sections.global.settings.color_scheme_text.options.default.label"
+        },
+        {
+          "value": "text-colors-secondary",
+          "label": "t:sections.global.settings.color_scheme_text.options.secondary.label"
+        },
+        {
+          "value": "text-colors-inverse",
+          "label": "t:sections.global.settings.color_scheme_text.options.inverse.label"
+        }
+      ],
+      "default": "text-colors-default"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme_background",
+      "label": "t:sections.global.settings.color_scheme_background.label",
+      "options": [
+        {
+          "value": "background-colors-default",
+          "label": "t:sections.global.settings.color_scheme_background.options.default.label"
+        },
+        {
+          "value": "background-colors-secondary",
+          "label": "t:sections.global.settings.color_scheme_background.options.secondary.label"
+        },
+        {
+          "value": "background-colors-accent-1",
+          "label": "t:sections.global.settings.color_scheme_background.options.accent_one.label"
+        },
+        {
+          "value": "background-colors-accent-2",
+          "label": "t:sections.global.settings.color_scheme_background.options.accent_two.label"
+        },
+        {
+          "value": "background-colors-inverse",
+          "label": "t:sections.global.settings.color_scheme_background.options.inverse.label"
+        }
+      ],
+      "default": "background-colors-default"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.age-verification-popup.settings.header_text.content"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:sections.age-verification-popup.settings.title.label",
+      "default": "Verify your age"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "t:sections.age-verification-popup.settings.content.label",
+      "default": "<p>You must be 18 years of age or older to enter this site. Please verify your age.</p>"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.age-verification-popup.settings.header_buttons.content"
+    },
+    {
+      "type": "text",
+      "id": "button_confirm",
+      "label": "t:sections.age-verification-popup.settings.button_confirm.label",
+      "default": "Yes"
+    },
+    {
+      "type": "select",
+      "id": "button_confirm_style",
+      "label": "t:sections.age-verification-popup.settings.button_confirm_style.label",
+      "options": [
+        {
+          "value": "button--filled",
+          "label": "t:sections.global.settings.button_style.options.filled.label"
+        },
+        {
+          "value": "button--outlined",
+          "label": "t:sections.global.settings.button_style.options.outlined.label"
+        },
+        {
+          "value": "button--outlined-inverse",
+          "label": "t:sections.global.settings.button_style.options.outlined_inverse.label"
+        },
+        {
+          "value": "default",
+          "label": "t:sections.global.settings.button_style.options.default.label"
+        }
+      ],
+      "info": "t:sections.global.settings.button_style.info",
+      "default": "button--filled"
+    },
+    {
+      "type": "text",
+      "id": "button_decline",
+      "label": "t:sections.age-verification-popup.settings.button_decline.label",
+      "default": "No"
+    },
+    {
+      "type": "url",
+      "id": "button_decline_url",
+      "label": "t:sections.age-verification-popup.settings.button_decline_url.label",
+      "default": "/"
+    },
+    {
+      "type": "select",
+      "id": "button_decline_style",
+      "label": "t:sections.age-verification-popup.settings.button_decline_style.label",
+      "options": [
+        {
+          "value": "button--filled",
+          "label": "t:sections.global.settings.button_style.options.filled.label"
+        },
+        {
+          "value": "button--outlined",
+          "label": "t:sections.global.settings.button_style.options.outlined.label"
+        },
+        {
+          "value": "button--outlined-inverse",
+          "label": "t:sections.global.settings.button_style.options.outlined_inverse.label"
+        },
+        {
+          "value": "default",
+          "label": "t:sections.global.settings.button_style.options.default.label"
+        }
+      ],
+      "info": "t:sections.global.settings.button_style.info",
+      "default": "button--filled"
+    }
+  ]
+}
+{% endschema %}

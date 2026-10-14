@@ -1,0 +1,77 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "ba2e09f9-38b3-4ed6-93ae-c2cd3420c2c0": {
+          "type": "menu",
+          "settings": {
+            "title": "CONTACT US",
+            "title_url": "#",
+            "menu": "contact-us"
+          }
+        },
+        "b7f1dbf8-fb4b-4c72-ad35-cf47b087fc1f": {
+          "type": "menu",
+          "settings": {
+            "title": "POLICIES",
+            "title_url": "",
+            "menu": "footer"
+          }
+        },
+        "762130ce-c112-474e-ab41-0e908f95e578": {
+          "type": "socials",
+          "settings": {
+            "icons": true
+          }
+        },
+        "075332fc-22c3-4d56-9cb5-95c07cf43430": {
+          "type": "utilities",
+          "settings": {
+            "newsletter": true,
+            "newsletter_content": "SUBSCRIBE FOR STORE UPDATES AND DISCOUNTS.",
+            "country_selector": true
+          }
+        }
+      },
+      "block_order": [
+        "ba2e09f9-38b3-4ed6-93ae-c2cd3420c2c0",
+        "b7f1dbf8-fb4b-4c72-ad35-cf47b087fc1f",
+        "762130ce-c112-474e-ab41-0e908f95e578",
+        "075332fc-22c3-4d56-9cb5-95c07cf43430"
+      ],
+      "settings": {
+        "first_accordion_show": true,
+        "social_links": true,
+        "social_links_in_new_tab": true,
+        "color_scheme_text": "color-text-inverse",
+        "color_scheme_background": "color-background-primary",
+        "layout": "footer--logo-none",
+        "logo_svg_code": "",
+        "logo_width": 160,
+        "logo_width_mobile": 130,
+        "footer_bottom_content_alignment": "column-reverse",
+        "enable_payment_icons": true,
+        "custom_payment_types": "",
+        "override_default_payment_icons": false,
+        "payment_icons_color": true,
+        "copyright": "<p>Copyright © 2025, <a href=\"https://crownmoissanite.myshopify.com/\">crownmoissanite</a>. All rights reserved. See our terms of use and privacy notice.<a href=\"https://www.shopify.com/?utm_campaign=poweredby&utm_medium=shopify&utm_source=onlinestore\" target=\"_blank\">Powered by Shopify</a></p>",
+        "enable_follow_on_shop": true
+      }
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

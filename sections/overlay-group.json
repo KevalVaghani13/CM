@@ -1,0 +1,48 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.overlay.name",
+  "type": "custom.overlay",
+  "sections": {
+    "age-verification-popup": {
+      "type": "age-verification-popup",
+      "disabled": true,
+      "settings": {
+        "customizer_visible": false,
+        "color_scheme_text": "text-colors-default",
+        "color_scheme_background": "background-colors-default",
+        "title": "Verify your age",
+        "content": "<p>You must be 18 years of age or older to enter this site. Please verify your age.</p>",
+        "button_confirm": "Yes",
+        "button_confirm_style": "button--filled",
+        "button_decline": "No",
+        "button_decline_url": "/",
+        "button_decline_style": "button--outlined"
+      }
+    },
+    "newsletter-popup": {
+      "type": "newsletter-popup",
+      "settings": {
+        "customizer_visible": true,
+        "color_scheme_text": "text-colors-primary",
+        "color_scheme_background": "background-colors-default",
+        "delay": 12,
+        "image": "shopify://shop_images/ba6dcf41975cad8db713cb839453b790.jpg",
+        "title": "Be First To Sparkle",
+        "content": "Get early access to new arrivals, exclusive offers, and special collections before anyone else ✨",
+        "button_close_text": "No thanks"
+      }
+    }
+  },
+  "order": [
+    "age-verification-popup",
+    "newsletter-popup"
+  ]
+}

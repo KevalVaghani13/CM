@@ -1,0 +1,675 @@
+{%- assign has_ring_size_tag = false -%}
+{%- assign has_engrave_tag = false -%}
+{%- if product.tags contains 'ring-size' -%}
+  {%- assign has_ring_size_tag = true -%}
+{%- endif -%}
+{%- if product.tags contains 'engrave' -%}
+  {%- assign has_engrave_tag = true -%}
+{%- endif -%}
+
+{%- if block.settings.enable_ring_size and has_ring_size_tag or block.settings.enable_engraving and has_engrave_tag -%}
+  <div class="product__ring-size-engraving" {{ block.shopify_attributes }}>
+    {%- if block.settings.enable_ring_size and has_ring_size_tag -%}
+      <div class="product-form__input" style="margin-bottom: 15px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+          <label class="form__label" for="RingSize-{{ section.id }}" style="margin-bottom: 0; display: inline-block;">Ring Size: <span id="RingSizeDisplay-{{ section.id }}"></span></label>
+          <button type="button" class="ring-size-guide-trigger" id="RingSizeGuideTrigger-{{ section.id }}" aria-haspopup="dialog" style="background: none; border: none; padding: 0; font-family: inherit; font-size: 1.3rem; text-decoration: underline; color: #121212; cursor: pointer; transition: opacity 0.2s ease;">Find my ring size</button>
+        </div>
+        
+        {%- capture ring_size_options -%}
+          <option value="">Select Ring Size</option>
+          {%- for i in (12..48) -%}
+            {%- assign remainder = i | modulo: 4 -%}
+            {%- assign base = i | divided_by: 4 -%}
+            {%- if remainder == 0 -%}
+              {%- assign size_str = base | append: '' -%}
+            {%- elsif remainder == 1 -%}
+              {%- assign size_str = base | append: '.25' -%}
+            {%- elsif remainder == 2 -%}
+              {%- assign size_str = base | append: '.5' -%}
+            {%- elsif remainder == 3 -%}
+              {%- assign size_str = base | append: '.75' -%}
+            {%- endif -%}
+            <option value="US {{ size_str }}">US {{ size_str }}</option>
+          {%- endfor -%}
+        {%- endcapture -%}
+        
+        <style>
+          .custom-pill-input .dropdown__summary {
+            border-radius: 50px;
+          }
+          .custom-pill-input .field__input {
+            border-radius: 50px;
+          }
+
+          /* Drawer Styles */
+          .ring-size-drawer-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 999999;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0.3s ease, opacity 0.3s ease;
+          }
+
+          .ring-size-drawer-wrapper.is-open {
+            visibility: visible;
+            opacity: 1;
+          }
+
+          .ring-size-drawer__overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(2px);
+          }
+
+          .ring-size-drawer__panel {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            max-width: 480px;
+            height: 100%;
+            background: #ffffff;
+            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.15);
+            transform: translateX(100%);
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            padding: 30px 24px 24px 24px;
+            z-index: 2;
+            box-sizing: border-box;
+          }
+
+          .ring-size-drawer-wrapper.is-open .ring-size-drawer__panel {
+            transform: translateX(0);
+          }
+
+          .ring-size-drawer__close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: #333;
+            transition: background-color 0.2s ease, color 0.2s ease;
+            z-index: 10;
+          }
+
+          .ring-size-drawer__close:hover {
+            background-color: #f0f0f0;
+            color: #000;
+          }
+
+          .popup-link__inner {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            overflow: hidden;
+          }
+
+          .popup-custom-header h3 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin: 0 0 6px 0;
+            color: #121212;
+            letter-spacing: -0.01em;
+          }
+
+          .popup-desc p {
+            font-size: 1.3rem;
+            color: #666;
+            margin: 0 0 20px 0;
+            line-height: 1.4;
+          }
+
+          .ring-size-chart {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-height: 0;
+          }
+
+          .chart-header {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #121212;
+          }
+
+          .table-scroll {
+            flex: 1;
+            overflow-y: auto;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            background: #fff;
+          }
+
+          .chart-table {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+          }
+
+          .table-head {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr 1.4fr;
+            background: #f7f7f7;
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: #121212;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            border-bottom: 1px solid #e5e5e5;
+            text-align: center;
+          }
+
+          .table-head > div {
+            padding: 12px 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+
+          .table-body {
+            display: flex;
+            flex-direction: column;
+          }
+
+          .table-row {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr 1.4fr;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 1.3rem;
+            color: #333;
+            text-align: center;
+            transition: background-color 0.15s ease;
+          }
+
+          .table-row:nth-child(even) {
+            background-color: #fafafa;
+          }
+
+          .table-row:hover {
+            background-color: #f2f5f8;
+          }
+
+          .table-row > div {
+            padding: 10px 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+        </style>
+        
+        <div class="custom-pill-input">
+          {%- assign attr_form = 'form="' | append: product_form_id | append: '"' -%}
+          {%- assign input_id = 'RingSize-' | append: section.id -%}
+          {%- render 'select-input', id: input_id, name: 'properties[Ring Size]', options: ring_size_options, attr: attr_form -%}
+        </div>
+      </div>
+
+      <!-- Ring Size Guide Right-Side Drawer -->
+      <div id="RingSizeDrawer-{{ section.id }}" class="ring-size-drawer-wrapper" aria-hidden="true" role="dialog" aria-modal="true">
+        <div class="ring-size-drawer__overlay" id="RingSizeDrawerOverlay-{{ section.id }}"></div>
+        <div class="ring-size-drawer__panel">
+          <button type="button" class="ring-size-drawer__close" id="RingSizeDrawerClose-{{ section.id }}" aria-label="Close">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+          <div class="popup-link__inner">
+            <div class="popup-custom-header">
+              <h3>Ring Size Guide</h3>
+              <div class="popup-desc">
+                <p>Find your perfect fit using our conversion chart below.</p>
+              </div>
+            </div>
+
+            <div class="ring-size-chart">
+              <div class="chart-header">Ring Size Chart</div>
+            
+              <div class="table-scroll">
+                <div class="chart-table">
+                  <div class="table-head">
+                    <div>Ring Size</div>
+                    <div>Inner Diameter (mm)</div>
+                    <div>Inner Circumference (mm)</div>
+                  </div>
+            
+                  <div class="table-body">
+                    <div class="table-row">
+                      <div>1</div>
+                      <div>12.45</div>
+                      <div>39.11</div>
+                    </div>
+                    <div class="table-row">
+                      <div>1.25</div>
+                      <div>12.65</div>
+                      <div>39.74</div>
+                    </div>
+                    <div class="table-row">
+                      <div>1.5</div>
+                      <div>12.85</div>
+                      <div>40.37</div>
+                    </div>
+                    <div class="table-row">
+                      <div>1.75</div>
+                      <div>13.05</div>
+                      <div>41.00</div>
+                    </div>
+                    <div class="table-row">
+                      <div>2</div>
+                      <div>13.25</div>
+                      <div>41.63</div>
+                    </div>
+                    <div class="table-row">
+                      <div>2.25</div>
+                      <div>13.45</div>
+                      <div>42.25</div>
+                    </div>
+                    <div class="table-row">
+                      <div>2.5</div>
+                      <div>13.65</div>
+                      <div>42.88</div>
+                    </div>
+                    <div class="table-row">
+                      <div>2.75</div>
+                      <div>13.85</div>
+                      <div>43.51</div>
+                    </div>
+                    <div class="table-row">
+                      <div>3</div>
+                      <div>14.05</div>
+                      <div>44.14</div>
+                    </div>
+                    <div class="table-row">
+                      <div>3.25</div>
+                      <div>14.25</div>
+                      <div>44.77</div>
+                    </div>
+                    <div class="table-row">
+                      <div>3.5</div>
+                      <div>14.45</div>
+                      <div>45.40</div>
+                    </div>
+                    <div class="table-row">
+                      <div>3.75</div>
+                      <div>14.65</div>
+                      <div>46.02</div>
+                    </div>
+                    <div class="table-row">
+                      <div>4</div>
+                      <div>14.85</div>
+                      <div>46.65</div>
+                    </div>
+                    <div class="table-row">
+                      <div>4.25</div>
+                      <div>15.05</div>
+                      <div>47.28</div>
+                    </div>
+                    <div class="table-row">
+                      <div>4.5</div>
+                      <div>15.25</div>
+                      <div>47.91</div>
+                    </div>
+                    <div class="table-row">
+                      <div>4.75</div>
+                      <div>15.45</div>
+                      <div>48.54</div>
+                    </div>
+                    <div class="table-row">
+                      <div>5</div>
+                      <div>15.65</div>
+                      <div>49.17</div>
+                    </div>
+                    <div class="table-row">
+                      <div>5.25</div>
+                      <div>15.85</div>
+                      <div>49.79</div>
+                    </div>
+                    <div class="table-row">
+                      <div>5.5</div>
+                      <div>16.05</div>
+                      <div>50.42</div>
+                    </div>
+                    <div class="table-row">
+                      <div>5.75</div>
+                      <div>16.25</div>
+                      <div>51.05</div>
+                    </div>
+                    <div class="table-row">
+                      <div>6</div>
+                      <div>16.45</div>
+                      <div>51.68</div>
+                    </div>
+                    <div class="table-row">
+                      <div>6.25</div>
+                      <div>16.65</div>
+                      <div>52.31</div>
+                    </div>
+                    <div class="table-row">
+                      <div>6.5</div>
+                      <div>16.85</div>
+                      <div>52.94</div>
+                    </div>
+                    <div class="table-row">
+                      <div>6.75</div>
+                      <div>17.05</div>
+                      <div>53.56</div>
+                    </div>
+                    <div class="table-row">
+                      <div>7</div>
+                      <div>17.25</div>
+                      <div>54.19</div>
+                    </div>
+                    <div class="table-row">
+                      <div>7.25</div>
+                      <div>17.45</div>
+                      <div>54.82</div>
+                    </div>
+                    <div class="table-row">
+                      <div>7.5</div>
+                      <div>17.65</div>
+                      <div>55.45</div>
+                    </div>
+                    <div class="table-row">
+                      <div>7.75</div>
+                      <div>17.85</div>
+                      <div>56.08</div>
+                    </div>
+                    <div class="table-row">
+                      <div>8</div>
+                      <div>18.05</div>
+                      <div>56.71</div>
+                    </div>
+                    <div class="table-row">
+                      <div>8.25</div>
+                      <div>18.25</div>
+                      <div>57.33</div>
+                    </div>
+                    <div class="table-row">
+                      <div>8.5</div>
+                      <div>18.45</div>
+                      <div>57.96</div>
+                    </div>
+                    <div class="table-row">
+                      <div>8.75</div>
+                      <div>18.65</div>
+                      <div>58.59</div>
+                    </div>
+                    <div class="table-row">
+                      <div>9</div>
+                      <div>18.85</div>
+                      <div>59.22</div>
+                    </div>
+                    <div class="table-row">
+                      <div>9.25</div>
+                      <div>19.05</div>
+                      <div>59.85</div>
+                    </div>
+                    <div class="table-row">
+                      <div>9.5</div>
+                      <div>19.25</div>
+                      <div>60.48</div>
+                    </div>
+                    <div class="table-row">
+                      <div>9.75</div>
+                      <div>19.45</div>
+                      <div>61.10</div>
+                    </div>
+                    <div class="table-row">
+                      <div>10</div>
+                      <div>19.65</div>
+                      <div>61.73</div>
+                    </div>
+                    <div class="table-row">
+                      <div>10.25</div>
+                      <div>19.85</div>
+                      <div>62.36</div>
+                    </div>
+                    <div class="table-row">
+                      <div>10.5</div>
+                      <div>20.05</div>
+                      <div>62.99</div>
+                    </div>
+                    <div class="table-row">
+                      <div>10.75</div>
+                      <div>20.25</div>
+                      <div>63.62</div>
+                    </div>
+                    <div class="table-row">
+                      <div>11</div>
+                      <div>20.45</div>
+                      <div>64.25</div>
+                    </div>
+                    <div class="table-row">
+                      <div>11.25</div>
+                      <div>20.65</div>
+                      <div>64.87</div>
+                    </div>
+                    <div class="table-row">
+                      <div>11.5</div>
+                      <div>20.85</div>
+                      <div>65.50</div>
+                    </div>
+                    <div class="table-row">
+                      <div>11.75</div>
+                      <div>21.05</div>
+                      <div>66.13</div>
+                    </div>
+                    <div class="table-row">
+                      <div>12</div>
+                      <div>21.25</div>
+                      <div>66.76</div>
+                    </div>
+                    <div class="table-row">
+                      <div>12.25</div>
+                      <div>21.45</div>
+                      <div>67.39</div>
+                    </div>
+                    <div class="table-row">
+                      <div>12.5</div>
+                      <div>21.65</div>
+                      <div>68.02</div>
+                    </div>
+                    <div class="table-row">
+                      <div>12.75</div>
+                      <div>21.85</div>
+                      <div>68.64</div>
+                    </div>
+                    <div class="table-row">
+                      <div>13</div>
+                      <div>22.05</div>
+                      <div>69.27</div>
+                    </div>
+                    <div class="table-row">
+                      <div>13.25</div>
+                      <div>22.25</div>
+                      <div>69.90</div>
+                    </div>
+                    <div class="table-row">
+                      <div>13.5</div>
+                      <div>22.45</div>
+                      <div>70.53</div>
+                    </div>
+                    <div class="table-row">
+                      <div>13.75</div>
+                      <div>22.65</div>
+                      <div>71.16</div>
+                    </div>
+                    <div class="table-row">
+                      <div>14</div>
+                      <div>22.85</div>
+                      <div>71.79</div>
+                    </div>
+                    <div class="table-row">
+                      <div>14.25</div>
+                      <div>23.05</div>
+                      <div>72.41</div>
+                    </div>
+                    <div class="table-row">
+                      <div>14.5</div>
+                      <div>23.25</div>
+                      <div>73.04</div>
+                    </div>
+                    <div class="table-row">
+                      <div>14.75</div>
+                      <div>23.45</div>
+                      <div>73.67</div>
+                    </div>
+                    <div class="table-row">
+                      <div>15</div>
+                      <div>23.65</div>
+                      <div>74.30</div>
+                    </div>
+                    <div class="table-row">
+                      <div>15.25</div>
+                      <div>23.85</div>
+                      <div>74.93</div>
+                    </div>
+                    <div class="table-row">
+                      <div>15.5</div>
+                      <div>24.05</div>
+                      <div>75.56</div>
+                    </div>
+                    <div class="table-row">
+                      <div>15.75</div>
+                      <div>24.25</div>
+                      <div>76.18</div>
+                    </div>
+                    <div class="table-row">
+                      <div>16</div>
+                      <div>24.45</div>
+                      <div>76.81</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {%- endif -%}
+
+    {%- if block.settings.enable_engraving and has_engrave_tag -%}
+      <div class="product-form__input custom-pill-input" style="margin-bottom: 15px;">
+        <label class="form__label" for="Engraving-{{ section.id }}" style="display:flex; justify-content: space-between; margin-bottom: 5px;">
+          <span>Engraving ( Optional ): <span id="EngravingCounter-{{ section.id }}">(Max 15 characters)</span></span>
+        </label>
+        <input type="text" id="Engraving-{{ section.id }}" name="properties[Engraving]" form="{{ product_form_id }}" class="field__input" maxlength="15" placeholder="Enter your text here" style="width: 100%;">
+        <div id="EngravingCharCount-{{ section.id }}" class="caption" style="text-align: right; margin-top: 5px; font-size: 1.2rem; color: #666;">0/15</div>
+      </div>
+    {%- endif -%}
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const ringSizeSelect = document.getElementById('RingSize-{{ section.id }}');
+      const engravingInput = document.getElementById('Engraving-{{ section.id }}');
+      const engravingCounter = document.getElementById('EngravingCounter-{{ section.id }}');
+      const engravingCharCount = document.getElementById('EngravingCharCount-{{ section.id }}');
+      const ringSizeDisplay = document.getElementById('RingSizeDisplay-{{ section.id }}');
+
+      const triggerBtn = document.getElementById('RingSizeGuideTrigger-{{ section.id }}');
+      const drawerWrapper = document.getElementById('RingSizeDrawer-{{ section.id }}');
+      const overlay = document.getElementById('RingSizeDrawerOverlay-{{ section.id }}');
+      const closeBtn = document.getElementById('RingSizeDrawerClose-{{ section.id }}');
+
+      function openDrawer() {
+        if (drawerWrapper) {
+          drawerWrapper.classList.add('is-open');
+          drawerWrapper.setAttribute('aria-hidden', 'false');
+          document.body.style.overflow = 'hidden';
+        }
+      }
+
+      function closeDrawer() {
+        if (drawerWrapper) {
+          drawerWrapper.classList.remove('is-open');
+          drawerWrapper.setAttribute('aria-hidden', 'true');
+          document.body.style.overflow = '';
+        }
+      }
+
+      if (triggerBtn) {
+        triggerBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          openDrawer();
+        });
+      }
+
+      if (overlay) {
+        overlay.addEventListener('click', closeDrawer);
+      }
+
+      if (closeBtn) {
+        closeBtn.addEventListener('click', closeDrawer);
+      }
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && drawerWrapper && drawerWrapper.classList.contains('is-open')) {
+          closeDrawer();
+        }
+      });
+
+      function updateEngravingLimits() {
+        let maxChars = 15;
+        if (ringSizeSelect && ringSizeSelect.value) {
+          if (ringSizeDisplay) {
+            ringSizeDisplay.textContent = ringSizeSelect.value;
+          }
+          const sizeString = ringSizeSelect.value.replace('US ', '');
+          const size = parseFloat(sizeString);
+          if (!isNaN(size) && size < 5) {
+            maxChars = 10;
+          }
+        } else if (ringSizeSelect && !ringSizeSelect.value) {
+           if (ringSizeDisplay) {
+            ringSizeDisplay.textContent = '';
+          }
+        }
+
+        if (engravingInput) {
+          engravingInput.setAttribute('maxlength', maxChars);
+          if (engravingCounter) {
+            engravingCounter.textContent = `(Max ${maxChars} characters)`;
+          }
+          
+          if (engravingInput.value.length > maxChars) {
+            engravingInput.value = engravingInput.value.substring(0, maxChars);
+          }
+          
+          if (engravingCharCount) {
+            engravingCharCount.textContent = `${engravingInput.value.length}/${maxChars}`;
+          }
+        }
+      }
+
+      if (ringSizeSelect) {
+        ringSizeSelect.addEventListener('change', updateEngravingLimits);
+      }
+
+      if (engravingInput) {
+        engravingInput.addEventListener('input', updateEngravingLimits);
+      }
+
+      updateEngravingLimits();
+    });
+  </script>
+{%- endif -%}

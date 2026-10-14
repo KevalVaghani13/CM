@@ -1,0 +1,28 @@
+{%- if section.settings.title -%}
+  <h3 class="faq_header h3  container container--narrow">
+    {{- section.settings.title -}}
+  </h3>
+{%- endif -%}
+
+
+{% schema %}
+{
+  "name": "t:sections.faq_header.name",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:sections.faq_header.settings.title.label"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.faq_header.name"
+    }
+  ],
+  "enabled_on": {
+    "templates": ["page"]
+  }
+}
+{% endschema %}

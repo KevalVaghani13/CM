@@ -1,0 +1,137 @@
+{{- 'main-page.css' | asset_url | stylesheet_tag -}}
+
+<section class="main-page {{ section.settings.color_scheme_text }} {{ section.settings.color_scheme_background }}">
+  <div class="container container--small">
+    {%- if section.settings.breadcrumbs -%}
+      {%- render 'breadcrumbs', alignment: 'center', class: 'small-hide' -%}
+    {%- endif -%}
+    {%- if section.settings.show_page_title -%}
+      <h1 class="main-page__title h1 text-{{ section.settings.title_alignment }}">
+        {{- page.title | escape -}}
+      </h1>
+    {%- endif -%}
+      <div class="main-page__content font-size-md rte">
+        {{- page.content -}}
+      </div>
+    {%- if section.settings.info_title != blank or section.settings.info_content != blank -%}
+      <div class="main-page__foot rte">
+        {%- if section.settings.info_title != blank -%}
+          <h2 class="main-page__foot-title h4">
+            {{- section.settings.info_title | escape -}}
+          </h2>
+        {%- endif -%}
+        {%- if section.settings.info_content != blank -%}
+          {{- section.settings.info_content -}}
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.main-page.name",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_page_title",
+      "label": "t:sections.main-page.settings.show_page_title.label",
+      "info": "t:sections.main-page.settings.show_page_title.info",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "title_alignment",
+      "label": "t:sections.main-page.settings.title_alignment.label",
+      "options": [
+        {
+          "value": "start",
+          "label": "t:sections.global.settings.content_alignment.options.left.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.global.settings.content_alignment.options.center.label"
+        },
+        {
+          "value": "end",
+          "label": "t:sections.global.settings.content_alignment.options.right.label"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "checkbox",
+      "id": "breadcrumbs",
+      "label": "t:sections.main-page.settings.breadcrumbs.label",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "t:sections.main-page.settings.header_additional_info.content"
+    },
+    {
+      "type": "text",
+      "id": "info_title",
+      "label": "t:sections.main-page.settings.info_title.label"
+    },
+    {
+      "type": "richtext",
+      "id": "info_content",
+      "label": "t:sections.main-page.settings.info_content.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.global.settings.header_color_scheme.content"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme_text",
+      "label": "t:sections.global.settings.color_scheme_text.label",
+      "options": [
+        {
+          "value": "text-colors-default",
+          "label": "t:sections.global.settings.color_scheme_text.options.default.label"
+        },
+        {
+          "value": "text-colors-secondary",
+          "label": "t:sections.global.settings.color_scheme_text.options.secondary.label"
+        },
+        {
+          "value": "text-colors-inverse",
+          "label": "t:sections.global.settings.color_scheme_text.options.inverse.label"
+        }
+      ],
+      "default": "text-colors-default"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme_background",
+      "label": "t:sections.global.settings.color_scheme_background.label",
+      "options": [
+        {
+          "value": "background-colors-default",
+          "label": "t:sections.global.settings.color_scheme_background.options.default.label"
+        },
+        {
+          "value": "background-colors-secondary",
+          "label": "t:sections.global.settings.color_scheme_background.options.secondary.label"
+        },
+        {
+          "value": "background-colors-accent-1",
+          "label": "t:sections.global.settings.color_scheme_background.options.accent_one.label"
+        },
+        {
+          "value": "background-colors-accent-2",
+          "label": "t:sections.global.settings.color_scheme_background.options.accent_two.label"
+        },
+        {
+          "value": "background-colors-inverse",
+          "label": "t:sections.global.settings.color_scheme_background.options.inverse.label"
+        }
+      ],
+      "default": "background-colors-default"
+    }
+  ]
+}
+{% endschema %}
+

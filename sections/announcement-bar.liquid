@@ -1,0 +1,472 @@
+{{ 'section-bar.css' | asset_url | stylesheet_tag }}
+<script src="{{- 'announcement-bar-slider.js' | asset_url -}}" defer="defer"></script>
+
+{%- if section.blocks.size == 1 and section.blocks.first.settings.dropdown_cards == true -%}
+  <script src='{{- 'announcement-bar-dropdown-menu.js' | asset_url -}}' defer='defer'></script>
+{%- endif -%}
+
+{%- liquid
+  assign number_of_countdown_timer = 0
+  for block in section.blocks
+    if block.settings.countdown == true
+      assign number_of_countdown_timer = number_of_countdown_timer | plus: 1
+    endif
+  endfor
+-%}
+
+{% capture data_swiper_options %}
+  data-swiper-options = '{
+    {% if section.blocks.size > 1 %}
+      "loop": true,
+      "autoplay": {
+        "delay": {{ section.settings.slider_autoplay_interval | times: 1000 }}
+      }
+    {% else %}
+      "loop": false,
+      "autoplay": false
+    {% endif %}
+  }'
+{% endcapture %}
+
+<div class='bar js-announcement-bar {{ section.settings.color_scheme_text }} {{ section.settings.color_scheme_background }}'>
+  <div class='container'>
+    <div class='bar__inner'>
+      {%- if section.blocks.size == 0 -%}
+        {%- assign first_block = section.blocks | first -%}
+        {{ first_block.settings.content }}
+      {%- else -%}
+        <announcement-bar-slider
+          class='swiper bar__swiper'
+          data-autoplay-interval='{{- section.settings.slider_autoplay_interval | times: 1000 -}}'
+          {{ data_swiper_options | replace: ' ', '' | strip_newlines }}
+        >
+          <div class='swiper-wrapper'>
+            {%- for block in section.blocks -%}
+              {%- if block.settings.content == blank -%}
+                {%- continue -%}
+              {%- endif -%}
+              <div class='swiper-slide'>
+                <div class='bar__text-content{% if section.blocks.size == 1 and section.blocks.first.settings.dropdown_cards == true %} bar__content-container-dropdown{% endif %}{% if block.settings.countdown == true %} bar__countdown-timer__text-content{% endif %}'>
+                  {{ block.settings.content }}
+
+                  {%- if block.settings.countdown -%}
+                    {%- render 'countdown-timer',
+                      id: section.id,
+                      class: '',
+                      column_type: 'row',
+                      timer_text_first_letter: true,
+                      timer_year: block.settings.timer_year,
+                      timer_month: block.settings.timer_month,
+                      timer_day: block.settings.timer_day,
+                      timer_hour: block.settings.timer_hour,
+                      timer_minute: block.settings.timer_minute,
+                      timer_extend: block.settings.timer_extend,
+                      show_timer_days: block.settings.show_timer_days,
+                      show_timer_hours: block.settings.show_timer_hours,
+                      show_timer_minutes: block.settings.show_timer_minutes,
+                      show_timer_seconds: block.settings.show_timer_seconds,
+                      timer_end_message: block.settings.timer_end_message
+                    -%}
+                  {%- endif -%}
+
+                  {%- if section.blocks.size == 1 and section.blocks.first.settings.dropdown_cards == true -%}
+                    <button
+                      id="NavToggle-AnnouncementDropdown"
+                      type="button"
+                      class="bar__dropdown-icon svg-color-inherit"
+                      aria-label="{{- 'accessibility.toggle_menu_drawer' | t -}}"
+                    >
+                      {%- render 'icon-chevron-down' -%}
+                    </button>
+                  {%- endif -%}
+                </div>
+              </div>
+            {%- endfor -%}
+          </div>
+        </announcement-bar-slider>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{%- if section.blocks.size == 1 and section.blocks.first.settings.dropdown_cards == true -%}
+  {%- render 'announcement-bar-dropdown' -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:sections.announcement-bar.name",
+  "class": "section--announcement-bar",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.global.settings.header_color_scheme.content"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme_text",
+      "label": "t:sections.global.settings.color_scheme_text.label",
+      "options": [
+        {
+          "value": "text-colors-default",
+          "label": "t:sections.global.settings.color_scheme_text.options.default.label"
+        },
+        {
+          "value": "text-colors-secondary",
+          "label": "t:sections.global.settings.color_scheme_text.options.secondary.label"
+        },
+        {
+          "value": "text-colors-inverse",
+          "label": "t:sections.global.settings.color_scheme_text.options.inverse.label"
+        }
+      ],
+      "default": "text-colors-default"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme_background",
+      "label": "t:sections.global.settings.color_scheme_background.label",
+      "options": [
+        {
+          "value": "background-colors-default",
+          "label": "t:sections.global.settings.color_scheme_background.options.default.label"
+        },
+        {
+          "value": "background-colors-secondary",
+          "label": "t:sections.global.settings.color_scheme_background.options.secondary.label"
+        },
+        {
+          "value": "background-colors-accent-1",
+          "label": "t:sections.global.settings.color_scheme_background.options.accent_one.label"
+        },
+        {
+          "value": "background-colors-accent-2",
+          "label": "t:sections.global.settings.color_scheme_background.options.accent_two.label"
+        },
+        {
+          "value": "background-colors-inverse",
+          "label": "t:sections.global.settings.color_scheme_background.options.inverse.label"
+        },
+        {
+          "value": "background-colors-light",
+          "label": "t:sections.global.settings.color_scheme_background.options.light.label"
+        }
+      ],
+      "default": "background-colors-accent-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.announcement-bar.settings.header_slider.content",
+      "info": "t:sections.announcement-bar.settings.header_slider.info"
+    },
+    {
+      "type": "range",
+      "id": "slider_autoplay_interval",
+      "min": 2,
+      "max": 6,
+      "step": 0.5,
+      "unit": "s",
+      "label": "t:sections.announcement-bar.settings.slider_autoplay_interval.label",
+      "default": 3
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text-slide",
+      "name": "t:sections.announcement-bar.blocks.text-slide.name",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "t:sections.announcement-bar.blocks.text-slide.settings.content.label",
+          "default": "<p>Welcome to our store</p>"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.announcement-bar.blocks.text-slide.settings.header_dropdown.content"
+        },
+        {
+          "type": "checkbox",
+          "id": "dropdown_cards",
+          "label": "t:sections.announcement-bar.blocks.text-slide.settings.dropdown_cards.label",
+          "info": "t:sections.announcement-bar.blocks.text-slide.settings.dropdown_cards.info",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "color_scheme_background_dropdown",
+          "label": "t:sections.global.settings.color_scheme_background.label",
+          "options": [
+            {
+              "value": "background-colors-default",
+              "label": "t:sections.global.settings.color_scheme_background.options.default.label"
+            },
+            {
+              "value": "background-colors-secondary",
+              "label": "t:sections.global.settings.color_scheme_background.options.secondary.label"
+            },
+            {
+              "value": "background-colors-accent-1",
+              "label": "t:sections.global.settings.color_scheme_background.options.accent_one.label"
+            },
+            {
+              "value": "background-colors-accent-2",
+              "label": "t:sections.global.settings.color_scheme_background.options.accent_two.label"
+            },
+            {
+              "value": "background-colors-inverse",
+              "label": "t:sections.global.settings.color_scheme_background.options.inverse.label"
+            }
+          ],
+          "default": "background-colors-default"
+        },
+        {
+          "type": "select",
+          "id": "color_scheme_text_dropdown",
+          "label": "t:sections.global.settings.color_scheme_text.label",
+          "options": [
+            {
+              "value": "text-colors-default",
+              "label": "t:sections.global.settings.color_scheme_text.options.default.label"
+            },
+            {
+              "value": "text-colors-secondary",
+              "label": "t:sections.global.settings.color_scheme_text.options.secondary.label"
+            },
+            {
+              "value": "text-colors-inverse",
+              "label": "t:sections.global.settings.color_scheme_text.options.inverse.label"
+            }
+          ],
+          "default": "text-colors-default"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.announcement-bar.blocks.text-slide.settings.header_dropdown_card_item__1.content"
+        },
+        {
+          "type": "text",
+          "id": "card_item_1__title",
+          "label": "t:sections.announcement-bar.blocks.text-slide.settings.dropdown_card_item.title.label"
+        },
+        {
+          "type": "richtext",
+          "id": "card_item_1__content",
+          "label": "t:sections.announcement-bar.blocks.text-slide.settings.dropdown_card_item.content.label"
+        },
+        {
+          "type": "text",
+          "id": "card_item_1__button_text",
+          "label": "t:sections.announcement-bar.blocks.text-slide.settings.dropdown_card_item.button_text.label"
+        },
+        {
+          "type": "url",
+          "id": "card_item_1__button_url",
+          "label": "t:sections.announcement-bar.blocks.text-slide.settings.dropdown_card_item.button_url.label"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.announcement-bar.blocks.text-slide.settings.header_dropdown_card_item__2.content"
+        },
+        {
+          "type": "text",
+          "id": "card_item_2__title",
+          "label": "t:sections.announcement-bar.blocks.text-slide.settings.dropdown_card_item.title.label"
+        },
+        {
+          "type": "richtext",
+          "id": "card_item_2__content",
+          "label": "t:sections.announcement-bar.blocks.text-slide.settings.dropdown_card_item.content.label"
+        },
+        {
+          "type": "text",
+          "id": "card_item_2__button_text",
+          "label": "t:sections.announcement-bar.blocks.text-slide.settings.dropdown_card_item.button_text.label"
+        },
+        {
+          "type": "url",
+          "id": "card_item_2__button_url",
+          "label": "t:sections.announcement-bar.blocks.text-slide.settings.dropdown_card_item.button_url.label"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.announcement-bar.blocks.text-slide.settings.header_dropdown_card_item__3.content"
+        },
+        {
+          "type": "text",
+          "id": "card_item_3__title",
+          "label": "t:sections.announcement-bar.blocks.text-slide.settings.dropdown_card_item.title.label"
+        },
+        {
+          "type": "richtext",
+          "id": "card_item_3__content",
+          "label": "t:sections.announcement-bar.blocks.text-slide.settings.dropdown_card_item.content.label"
+        },
+        {
+          "type": "text",
+          "id": "card_item_3__button_text",
+          "label": "t:sections.announcement-bar.blocks.text-slide.settings.dropdown_card_item.button_text.label"
+        },
+        {
+          "type": "url",
+          "id": "card_item_3__button_url",
+          "label": "t:sections.announcement-bar.blocks.text-slide.settings.dropdown_card_item.button_url.label"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.announcement-bar.blocks.text-slide.settings.header_countdown.content"
+        },
+        {
+          "type": "checkbox",
+          "id": "countdown",
+          "label": "t:sections.announcement-bar.blocks.text-slide.settings.countdown_availability.label",
+          "default": false
+        },
+        {
+          "type": "number",
+          "id": "timer_year",
+          "label": "t:sections.global.settings.timer.settings.timer_year.label",
+          "default": 2024
+        },
+        {
+          "type": "select",
+          "id": "timer_month",
+          "label": "t:sections.global.settings.timer.settings.timer_month.label",
+          "options": [
+            {
+              "value": "01",
+              "label": "t:sections.global.settings.timer.settings.timer_month.options.options__1"
+            },
+            {
+              "value": "02",
+              "label": "t:sections.global.settings.timer.settings.timer_month.options.options__2"
+            },
+            {
+              "value": "03",
+              "label": "t:sections.global.settings.timer.settings.timer_month.options.options__3"
+            },
+            {
+              "value": "04",
+              "label": "t:sections.global.settings.timer.settings.timer_month.options.options__4"
+            },
+            {
+              "value": "05",
+              "label": "t:sections.global.settings.timer.settings.timer_month.options.options__5"
+            },
+            {
+              "value": "06",
+              "label": "t:sections.global.settings.timer.settings.timer_month.options.options__6"
+            },
+            {
+              "value": "07",
+              "label": "t:sections.global.settings.timer.settings.timer_month.options.options__7"
+            },
+            {
+              "value": "08",
+              "label": "t:sections.global.settings.timer.settings.timer_month.options.options__8"
+            },
+            {
+              "value": "09",
+              "label": "t:sections.global.settings.timer.settings.timer_month.options.options__9"
+            },
+            {
+              "value": "10",
+              "label": "t:sections.global.settings.timer.settings.timer_month.options.options__10"
+            },
+            {
+              "value": "11",
+              "label": "t:sections.global.settings.timer.settings.timer_month.options.options__11"
+            },
+            {
+              "value": "12",
+              "label": "t:sections.global.settings.timer.settings.timer_month.options.options__12"
+            }
+          ],
+          "default": "01"
+        },
+        {
+          "type": "range",
+          "id": "timer_day",
+          "label": "t:sections.global.settings.timer.settings.timer_day.label",
+          "min": 1,
+          "max": 31,
+          "step": 1,
+          "default": 1
+        },
+        {
+          "type": "range",
+          "id": "timer_hour",
+          "label": "t:sections.global.settings.timer.settings.timer_hour.label",
+          "min": 0,
+          "max": 23,
+          "step": 1,
+          "default": 0,
+          "unit": "h"
+        },
+        {
+          "type": "range",
+          "id": "timer_minute",
+          "label": "t:sections.global.settings.timer.settings.timer_minute.label",
+          "min": 0,
+          "max": 59,
+          "step": 1,
+          "default": 0,
+          "unit": "m"
+        },
+        {
+          "type": "range",
+          "id": "timer_extend",
+          "label": "t:sections.global.settings.timer.settings.timer_extend.label",
+          "info": "t:sections.global.settings.timer.settings.timer_extend.info",
+          "min": 0,
+          "max": 30,
+          "step": 1,
+          "default": 0,
+          "unit": "d"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "timer_end_message",
+          "label": "t:sections.global.settings.timer.settings.timer_end_message.label",
+          "info": "t:sections.global.settings.timer.settings.timer_end_message.info",
+          "default": "Sale has ended"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_timer_days",
+          "label": "t:sections.global.settings.timer.settings.show_timer_days.label",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_timer_hours",
+          "label": "t:sections.global.settings.timer.settings.show_timer_hours.label",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_timer_minutes",
+          "label": "t:sections.global.settings.timer.settings.show_timer_minutes.label",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_timer_seconds",
+          "label": "t:sections.global.settings.timer.settings.show_timer_seconds.label",
+          "default": true
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.announcement-bar.name",
+      "blocks": [
+        {
+          "type": "text-slide"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,269 @@
+{{- 'section-before-and-after.css' | asset_url | stylesheet_tag -}}
+<script src="{{- 'before-and-after-slider.js' | asset_url -}}" defer="defer"></script>
+
+{%- capture section_additional_classes -%}
+  {{ section.settings.color_scheme_text }} {{ section.settings.color_scheme_background }} {{ section.settings.padding_vertical_desktop }} {{ section.settings.padding_vertical_mobile }} {{ section.settings.layout }}
+{%- endcapture -%}
+
+<section id="section-before-and-after-{{- section.id -}}" data-id="{{- section.id -}}" class="section-before-and-after overflow-hidden js-animation-fade-in {{ section_additional_classes | strip }}">
+  <div class="container">
+    <div class="before-and-after-grid">
+      <div class="before-and-after-grid-col-text-content">
+        <div class="before-and-after-grid-col-text-content-text-container">
+          {%- if section.settings.title != blank -%}
+            <h2 class="section__title section-before-and-after-title">
+              {{- section.settings.title -}}
+            </h2>
+          {%- endif -%}
+          {%- if section.settings.content != blank -%}
+            <h5 class="section-before-and-after-content">{{- section.settings.content -}}</h5>
+          {%- endif -%}
+        </div>
+        <div class="before-and-after-grid-col-text-content-button-container">
+          {%- if section.settings.button_text != blank and section.settings.button_url != blank -%}
+            <div>
+            {%- render 'button', type: 'link', class: 'button',
+              button_style: section.settings.button_style,
+              value: section.settings.button_text,
+              href: section.settings.button_url -%}
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+      <div class="before-and-after-grid-col-slider">
+        <div class="ims-container">
+          <div class="ims-images-wrapper">
+            {% for block in section.blocks reversed %}
+              {% if block.type == 'image-before-slide' or block.type == 'image-after-slide' %}
+                <div class="ims-image {% if forloop.index == 2 %}ims-image-after{% endif %}{% if forloop.index == 1 %}ims-image-before{% endif %}">
+                  {%- liquid
+                    if block.settings.image
+                      assign image_alt = block.settings.image.alt | default: block.settings.title | escape
+                      render 'image', image: block.settings.image, alt: image_alt
+                    else
+                      echo 'lifestyle-1' | placeholder_svg_tag: 'ims-placeholder-svg'
+                    endif
+                  -%}
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+          <div class="ims-slider">
+            <div class="ims-handle-line">
+              <div class="ims-handle-circle"></div>
+            </div>
+            <input class="before-and-after-input" max="100" min="0" type="range" value="50" />
+          </div>
+          {% for block in section.blocks reversed %}
+            <span class="ims-label {% if forloop.index == 1 %} ims-label-after{% endif %}{% if forloop.index == 2 %} ims-label-before{% endif %}" style="color: {{ block.settings.color_title }}">
+            {{ block.settings.title }}
+            </span>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.before-and-after.name",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Before / After"
+    },
+    {
+      "type": "textarea",
+      "id": "content",
+      "label": "Content",
+      "default": "Before and after images are a great way to showcase the transformation or improvement in a particular subject."
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        {
+          "value": "section_slider_layout--full",
+          "label": "Full"
+        },
+        {
+          "value": "section_slider_layout--shrink",
+          "label": "Shrink"
+        }
+      ],
+      "default": "section_slider_layout--shrink"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme_text",
+      "label": "t:sections.global.settings.color_scheme_text.label",
+      "options": [
+        {
+          "value": "text-colors-default",
+          "label": "t:sections.global.settings.color_scheme_text.options.default.label"
+        },
+        {
+          "value": "text-colors-secondary",
+          "label": "t:sections.global.settings.color_scheme_text.options.secondary.label"
+        },
+        {
+          "value": "text-colors-inverse",
+          "label": "t:sections.global.settings.color_scheme_text.options.inverse.label"
+        }
+      ],
+      "default": "text-colors-default"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme_background",
+      "label": "t:sections.global.settings.color_scheme_background.label",
+      "options": [
+        {
+          "value": "background-colors-default",
+          "label": "t:sections.global.settings.color_scheme_background.options.default.label"
+        },
+        {
+          "value": "background-colors-secondary",
+          "label": "t:sections.global.settings.color_scheme_background.options.secondary.label"
+        },
+        {
+          "value": "background-colors-accent-1",
+          "label": "t:sections.global.settings.color_scheme_background.options.accent_one.label"
+        },
+        {
+          "value": "background-colors-accent-2",
+          "label": "t:sections.global.settings.color_scheme_background.options.accent_two.label"
+        },
+        {
+          "value": "background-colors-inverse",
+          "label": "t:sections.global.settings.color_scheme_background.options.inverse.label"
+        }
+      ],
+      "default": "background-colors-accent-1"
+    },
+    {
+      "type": "select",
+      "id": "button_style",
+      "label": "t:sections.global.settings.button_style.label",
+      "options": [
+        {
+          "value": "button--filled",
+          "label": "t:sections.global.settings.button_style.options.filled.label"
+        },
+        {
+          "value": "button--outlined",
+          "label": "t:sections.global.settings.button_style.options.outlined.label"
+        },
+        {
+          "value": "button--outlined-inverse",
+          "label": "t:sections.global.settings.button_style.options.outlined_inverse.label"
+        },
+        {
+          "value": "button--text",
+          "label": "t:sections.global.settings.button_style.options.text.label"
+        }
+      ],
+      "info": "t:sections.global.settings.button_style.info",
+      "default": "button--filled"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Shop now"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button url"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image-before-slide",
+      "limit": 1,
+      "name": "t:sections.before-and-after.blocks.image-before-slide.settings.image-before.label",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.before-and-after.blocks.image-before-slide.settings.image.content"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.before-and-after.blocks.image-before-slide.settings.header.content"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "t:sections.before-and-after.blocks.image-before-slide.settings.title.label"
+        },
+        {
+          "type": "color",
+          "id": "color_title",
+          "label": "t:sections.before-and-after.blocks.image-before-slide.settings.color_title.label",
+          "default": "#FFFFFF"
+        }
+      ]
+    },
+    {
+      "type": "image-after-slide",
+      "limit": 1,
+      "name": "t:sections.before-and-after.blocks.image-before-slide.settings.image-after.label",
+      "settings": [
+        {
+          "type": "header",
+          "content": "t:sections.before-and-after.blocks.image-before-slide.settings.header.content"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.before-and-after.blocks.image-after-slide.settings.image.content"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.before-and-after.blocks.image-after-slide.settings.header.content"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "t:sections.before-and-after.blocks.image-after-slide.settings.text.label"
+        },
+        {
+          "type": "color",
+          "id": "color_title",
+          "label": "t:sections.before-and-after.blocks.image-after-slide.settings.color.label",
+          "default": "#FFFFFF"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.before-and-after.name",
+      "blocks": [
+        {
+          "type": "image-before-slide",
+          "settings": {
+            "title": "Image before"
+          }
+        },
+        {
+          "type": "image-after-slide",
+          "settings": {
+            "title": "Image after"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

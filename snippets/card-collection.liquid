@@ -1,0 +1,74 @@
+{%- comment -%}
+  Renders a collection card
+
+  Accepts:
+  - collection_ref: {Object} - Collection object
+  - class: {String} - Class to be applied to the card
+  - class_without_image: {String} Class to be applied when the card has no image. Replaces original class
+{%- endcomment -%}
+{%- liquid
+  assign class = class | default: blank
+  assign title = title | default: collection_ref.title
+  assign image = image | default: collection_ref.featured_image
+
+  if section.settings.enable_first_product_image
+    assign image = collection_ref.products.first.featured_image
+  endif
+  if collection_ref.metafields.card.image != blank
+    assign image = collection_ref.metafields.card.image
+  endif
+
+  if image != blank
+    assign media_class = ' media--overlay'
+
+    capture card_image
+      render 'image', image: image, image_per_view: image_per_view, alt: image.alt, default: title
+    endcapture
+  elsif class_without_image
+    assign class = class_without_image | append: ' card-collection--no-image'
+  else
+    assign class = class | append: ' card-collection--no-image'
+  endif
+
+  assign card_style = card_style | default: 'compact'
+-%}
+
+<div class="card-collection card-collection--{{ card_style }} {{ class }}">
+  <a href="{{- collection_ref.url -}}">
+    {% unless section.settings.text_only and card_style == 'normal' %}
+      <div class="media{{ media_class }} card-collection__media">
+        {% if image != blank %}
+          {{ card_image }}
+        {% else %}
+          {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
+        {% endif %}
+      </div>
+    {% endunless %}
+    {% if card_style != 'normal' %}
+      <div class="card-collection__content">
+        <h3 class="card-collection__title">
+          {{- title -}}
+        </h3>
+        <span class="link card-collection__link">
+          {{- 'featured-collections.card.link' | t -}}
+        </span>
+      </div>
+    {% else %}
+      <h3 class="card-collection__title {% if card_style == 'normal' %}card-collection__title-collection{% endif %}">
+        {{- title -}}
+      </h3>
+    {% endif %}
+  </a>
+</div>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "      render 'image', image: image, image_per_view: image_per_view, alt:
+    image.alt | default: title | escape"
+  to: "      render 'image', image: image, image_per_view: image_per_view, alt: image.alt,
+    default: title"
+  position: 779..877
+{% endcomment %}

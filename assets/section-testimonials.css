@@ -1,0 +1,24 @@
+.section-testimonials {
+  padding: var(--section-vertical-padding) 0;
+  background-color: var(--color-body-background);
+}
+
+.section-testimonials__title {
+  font-family: inherit;
+  font-size: var(--font-size-static-small);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-small);
+  letter-spacing: var(--letter-spacing-medium);
+  text-transform: uppercase;
+  margin: 0 0 3.2rem;
+}
+
+.section-testimonials .swiper-button {
+  color: var(--color-link-text);
+}
+
+@media screen and (min-width: 750px) {
+  .section-testimonials__title {
+    margin-block-end: 2.4rem;
+  }
+}

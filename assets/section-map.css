@@ -1,0 +1,28 @@
+.map {
+  padding-block-start: 3.2rem;
+}
+
+.map__wrapper {
+  padding-block-start: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+@media screen and (min-width: 990px) {
+  .map {
+    padding-block-start: 6.4rem;
+  }
+
+  .map__wrapper {
+    padding-block-start: calc(400 / 1440 * 100%);
+  }
+}
+
+.map__wrapper iframe {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  z-index: 1;
+}

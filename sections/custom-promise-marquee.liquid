@@ -1,0 +1,317 @@
+{%- assign raw_speed = section.settings.scroll_speed | default: 30 -%}
+{%- assign speed_val = 600 | divided_by: raw_speed | times: 3 -%}
+
+<style>
+#shopify-section-{{ section.id }} {
+  --bg-color: {{ section.settings.background_color }};
+  --text-color: {{ section.settings.text_color }};
+  --accent-color: {{ section.settings.accent_color }};
+  --speed: {{ speed_val }}s;
+  --gap: {{ section.settings.item_gap }}px;
+  --icon-sz: {{ section.settings.icon_size }}px;
+  --pad-v: {{ section.settings.section_padding }}px;
+}
+
+.custom-promise-section {
+  background: var(--bg-color);
+  width: 100%;
+  overflow: hidden;
+  padding: var(--pad-v) 0;
+  position: relative;
+  margin-top: 50px;
+}
+
+.cp-heading-wrap {
+  text-align: center;
+  padding-bottom: {{ section.settings.heading_gap }}px;
+}
+
+.cp-heading {
+  color: {{ section.settings.heading_color }};
+  text-transform: uppercase;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.cp-heading-line {
+  display: block;
+  width: 2px; /* Set smaller width for line or let it be 50px */
+  height: 2px;
+  background: var(--accent-color);
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+{%- if section.settings.heading_underline == true -%}
+.cp-heading-line {
+  width: 50px;
+}
+{%- else -%}
+.cp-heading-line {
+  display: none;
+}
+{%- endif -%}
+
+.cp-marquee-wrap {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.cp-track {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  width: max-content;
+  animation: cp-scroll var(--speed) linear infinite;
+}
+
+@keyframes cp-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.cp-item {
+  display: inline-flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  padding: 0 var(--gap);
+  color: var(--text-color);
+  text-align: center;
+  width: auto;
+}
+
+.cp-icon {
+  display: flex;
+  align-items: center;
+  width: var(--icon-sz);
+  height: var(--icon-sz);
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--icon-color);
+}
+
+
+.cp-icon img {
+  object-fit: contain;
+}
+
+.cp-label {
+  color: var(--text-color);
+  white-space: nowrap;
+}
+
+@media screen and (max-width: 1023px) {
+  .cp-item { padding: 0 calc(var(--gap) * 0.6); }
+}
+
+@media screen and (max-width: 767px) {
+  .cp-section { padding: calc(var(--pad-v) * 0.7) 0; }
+  .cp-track {
+    /* Keep animation and horizontal layout */
+  }
+  .cp-item {
+    padding: 0 calc(var(--gap) * 0.4);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #shopify-section-{{ section.id }} {
+    --icon-sz: calc({{ section.settings.icon_size }}px * 0.8);
+  }
+  .cp-item {
+    padding: 0 calc(var(--gap) * 0.2);
+  }
+  .cp-label {
+    white-space: wrap;
+  }
+}
+</style>
+
+<section class="custom-promise-section">
+  {%- if section.settings.show_heading and section.settings.heading_text != blank -%}
+    <div class="cp-heading-wrap">
+      <h2 class="cp-heading">{{ section.settings.heading_text | escape }}</h2>
+      <span class="cp-heading-line"></span>
+    </div>
+  {%- endif -%}
+
+  <div class="cp-marquee-wrap">
+    <div class="cp-track">
+      {%- for _n in (1..8) -%}
+        {%- for block in section.blocks -%}
+          <div class="cp-item" {{ block.shopify_attributes }}>
+            <div class="cp-icon" aria-hidden="true">
+              {%- if block.settings.custom_icon != blank -%}
+                {{- block.settings.custom_icon | image_url: width: 120 | image_tag: loading: 'lazy', alt: '' -}}
+              {%- endif -%}
+            </div>
+            {%- if block.settings.label != blank -%}
+              <span class="cp-label">{{- block.settings.label | escape -}}</span>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Custom Promise Marquee",
+  "tag": "section",
+  "class": "shopify-section--promise-marquee",
+  "disabled_on": {
+    "groups": ["header", "custom.overlay"]
+  },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_heading",
+      "label": "Show heading",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "heading_text",
+      "label": "Heading",
+      "default": "THE LYRA PROMISE"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#3D1C1C"
+    },
+    {
+      "type": "select",
+      "id": "heading_weight",
+      "label": "Heading weight",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "checkbox",
+      "id": "heading_underline",
+      "label": "Show underline",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "heading_gap",
+      "label": "Space below heading",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "scroll_speed",
+      "label": "Scroll speed",
+      "min": 10,
+      "max": 90,
+      "step": 5,
+      "default": 35
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "label": "Section padding",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "item_gap",
+      "label": "Gap between items",
+      "min": 20,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Icon size",
+      "min": 20,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#3D1C1C"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color",
+      "default": "#C9A96E"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Promise Item",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon_type",
+          "label": "Icon",
+          "options": [
+            { "value": "diamond", "label": "Diamond" },
+            { "value": "gold", "label": "Gold" },
+            { "value": "certificate", "label": "Certificate" },
+            { "value": "award", "label": "Award" }
+          ],
+          "default": "diamond"
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_icon",
+          "label": "Custom Icon (Overrides above)"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "IGI Diamond Certification"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Promise Marquee",
+      "blocks": [
+        { "type": "item", "settings": { "icon_type": "diamond", "label": "IGI Diamond Certification" } },
+        { "type": "item", "settings": { "icon_type": "gold", "label": "14KT & 18KT Hallmarked Gold" } },
+        { "type": "item", "settings": { "icon_type": "certificate", "label": "Certificate & Appraisal" } },
+        { "type": "item", "settings": { "icon_type": "award", "label": "Lifetime Warranty" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

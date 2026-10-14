@@ -1,0 +1,279 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "1658995208ad05f95f": {
+      "type": "hero-banner",
+      "blocks": {
+        "e3867974-072c-4cfe-968e-a10d22e8941a": {
+          "type": "slide",
+          "settings": {
+            "banner_layout": "hero-banner--full",
+            "color_scheme_text": "text-colors-default",
+            "color_scheme_background": "background-colors-inverse",
+            "header_menu_text_color": "#ffffff",
+            "video_external": "",
+            "enable_media_overlay_desktop": true,
+            "video_external_mobile": "",
+            "enable_media_overlay_mobile": true,
+            "content_position_horizontal": "align-center text-center",
+            "content_position_vertical": "justify-end",
+            "subtitle": "Brand Outline",
+            "subtitle_url": "",
+            "title": "Highlight your brand",
+            "content": "<p>Give more info about your brand</p>",
+            "enable_vertical_line": true,
+            "button_style": "button--outlined-inverse",
+            "button_text": "",
+            "button_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "e3867974-072c-4cfe-968e-a10d22e8941a"
+      ],
+      "settings": {
+        "slider_autoplay": true,
+        "slider_autoplay_interval": 5,
+        "slider_arrows": true,
+        "slider_arrows_position": "hero__swiper-buttons--sides",
+        "slider_arrows_color": "text-colors-inverse"
+      }
+    },
+    "9585dbdf-5519-43bd-a4c5-6aa99afe9a31": {
+      "type": "seo-content",
+      "settings": {
+        "padding_vertical_desktop": "",
+        "padding_vertical_mobile": "",
+        "color_scheme_text": "text-colors-default",
+        "color_scheme_background": "background-colors-inverse",
+        "text_size": 1.5,
+        "title": "Talk About Your Brand",
+        "content": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
+      }
+    },
+    "659a65bf-3115-47f3-af72-a53dd56039e2": {
+      "type": "dual-tiles",
+      "blocks": {
+        "template--16809880650043__659a65bf-3115-47f3-af72-a53dd56039e2-1667604434dda13274-0": {
+          "type": "tile",
+          "settings": {
+            "color_scheme_text": "text-colors-default",
+            "color_scheme_background": "background-colors-accent-1",
+            "video_desktop_external": "",
+            "video_desktop_aspect_ratio": "16/9",
+            "placeholder_svg_code": "",
+            "video_mobile_external": "",
+            "video_mobile_aspect_ratio": "16/9",
+            "video_mobile_compact": false,
+            "content_position_horizontal": "text-center align-center",
+            "content_position_vertical": "justify-end",
+            "title": "Dual Content for Brand",
+            "text_size": 2.5,
+            "content": "",
+            "button_style": "button--outlined",
+            "button_separator": false,
+            "button_text": "Shop our collection",
+            "button_url": "shopify://collections/swimwear",
+            "content_layout": "content--absolute",
+            "block_margin_left": 0,
+            "block_margin_right": 0,
+            "block_padding_top": 0,
+            "block_padding_bottom": 0,
+            "block_padding_left": 0,
+            "block_padding_right": 0
+          }
+        },
+        "template--16809880650043__659a65bf-3115-47f3-af72-a53dd56039e2-1667604434dda13274-1": {
+          "type": "tile",
+          "settings": {
+            "color_scheme_text": "text-colors-default",
+            "color_scheme_background": "background-colors-inverse",
+            "video_desktop_external": "",
+            "video_desktop_aspect_ratio": "16/9",
+            "placeholder_svg_code": "",
+            "video_mobile_external": "",
+            "video_mobile_aspect_ratio": "16/9",
+            "video_mobile_compact": false,
+            "content_position_horizontal": "text-center align-center",
+            "content_position_vertical": "justify-end",
+            "title": "Another Dual Content for Brand",
+            "text_size": 2.5,
+            "content": "",
+            "button_style": "button--outlined",
+            "button_separator": false,
+            "button_text": "Shop sale",
+            "button_url": "",
+            "content_layout": "content--absolute",
+            "block_margin_left": 0,
+            "block_margin_right": 0,
+            "block_padding_top": 1.6,
+            "block_padding_bottom": 1.6,
+            "block_padding_left": 1.6,
+            "block_padding_right": 1.6
+          }
+        }
+      },
+      "block_order": [
+        "template--16809880650043__659a65bf-3115-47f3-af72-a53dd56039e2-1667604434dda13274-0",
+        "template--16809880650043__659a65bf-3115-47f3-af72-a53dd56039e2-1667604434dda13274-1"
+      ],
+      "settings": {
+        "section_width": "max-w-full",
+        "section_height": 65,
+        "layout": "section-dual-tiles--50-50",
+        "gap_between_tiles": 0.2,
+        "spacing_top_desktop": 6,
+        "spacing_bottom_desktop": 6,
+        "spacing_top_mobile": 6,
+        "spacing_bottom_mobile": 6
+      }
+    },
+    "03a45767-3819-40b4-a750-ab1add481edc": {
+      "type": "dual-tiles",
+      "blocks": {
+        "template--18086433161531__03a45767-3819-40b4-a750-ab1add481edc-1677165430713b18f7-0": {
+          "type": "tile",
+          "settings": {
+            "color_scheme_text": "text-colors-default",
+            "color_scheme_background": "background-colors-default",
+            "video_desktop_external": "",
+            "video_desktop_aspect_ratio": "16/9",
+            "placeholder_svg_code": "",
+            "video_mobile_external": "",
+            "video_mobile_aspect_ratio": "16/9",
+            "video_mobile_compact": false,
+            "content_position_horizontal": "text-center align-center",
+            "content_position_vertical": "justify-end",
+            "title": "Brand Content",
+            "text_size": 2.5,
+            "content": "",
+            "button_style": "button--outlined",
+            "button_separator": false,
+            "button_text": "Shop Now",
+            "button_url": "shopify://collections",
+            "content_layout": "content--absolute",
+            "block_margin_left": 0,
+            "block_margin_right": 0,
+            "block_padding_top": 0,
+            "block_padding_bottom": 0,
+            "block_padding_left": 0,
+            "block_padding_right": 0
+          }
+        },
+        "template--18086433161531__03a45767-3819-40b4-a750-ab1add481edc-1677165430713b18f7-1": {
+          "type": "tile",
+          "settings": {
+            "color_scheme_text": "text-colors-default",
+            "color_scheme_background": "background-colors-accent-2",
+            "video_desktop_external": "",
+            "video_desktop_aspect_ratio": "16/9",
+            "placeholder_svg_code": "",
+            "video_mobile_external": "",
+            "video_mobile_aspect_ratio": "16/9",
+            "video_mobile_compact": false,
+            "content_position_horizontal": "text-center align-center",
+            "content_position_vertical": "justify-end",
+            "title": "Another Brand Content",
+            "text_size": 2.5,
+            "content": "",
+            "button_style": "button--outlined",
+            "button_separator": false,
+            "button_text": "",
+            "button_url": "",
+            "content_layout": "content--absolute",
+            "block_margin_left": 0,
+            "block_margin_right": 0,
+            "block_padding_top": 0,
+            "block_padding_bottom": 0,
+            "block_padding_left": 0,
+            "block_padding_right": 0
+          }
+        }
+      },
+      "block_order": [
+        "template--18086433161531__03a45767-3819-40b4-a750-ab1add481edc-1677165430713b18f7-0",
+        "template--18086433161531__03a45767-3819-40b4-a750-ab1add481edc-1677165430713b18f7-1"
+      ],
+      "settings": {
+        "section_width": "max-w-seminarrow",
+        "section_height": 65,
+        "layout": "section-dual-tiles--50-50",
+        "gap_between_tiles": 3.2,
+        "spacing_top_desktop": 6,
+        "spacing_bottom_desktop": 6,
+        "spacing_top_mobile": 6,
+        "spacing_bottom_mobile": 6
+      }
+    },
+    "ff1b88c1-7f9a-42ed-a737-5ce178874c08": {
+      "type": "testimonials",
+      "blocks": {
+        "template--16809880650043__ff1b88c1-7f9a-42ed-a737-5ce178874c08-1667844595b40c7541-0": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "<p>If you want to take your business to the next level, use Shopify and don't look any further.</p>",
+            "author": "Amy R, 2023",
+            "link_title": "",
+            "link_url": ""
+          }
+        },
+        "a10064c1-ac74-4fd8-b3ec-e5e7c8441642": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "<p>Shopify is a game-changer. Instead of drowning in an endless chain of emails, there is clear and easy accountability meaning tasks actually get done!</p>",
+            "author": "Jane Doe, 2022",
+            "link_title": "",
+            "link_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--16809880650043__ff1b88c1-7f9a-42ed-a737-5ce178874c08-1667844595b40c7541-0",
+        "a10064c1-ac74-4fd8-b3ec-e5e7c8441642"
+      ],
+      "settings": {
+        "padding_vertical_desktop": "",
+        "padding_vertical_mobile": "",
+        "color_scheme_text": "text-colors-default",
+        "color_scheme_background": "background-colors-accent-1",
+        "layout": "image-right",
+        "gap_between_desktop": 2,
+        "gap_between_mobile": 2,
+        "title": "From the people"
+      }
+    },
+    "b9e1f375-bbe3-49e0-b449-eff934bd3497": {
+      "type": "blog-articles",
+      "settings": {
+        "padding_vertical_desktop": "",
+        "padding_vertical_mobile": "pt-0-mobile",
+        "layout": "layout-2",
+        "gap_between_desktop": 2,
+        "gap_between_mobile": 2,
+        "content_alignment": "text-center",
+        "color_scheme_text": "text-colors-default",
+        "color_scheme_background": "background-colors-default",
+        "heading": "Blog",
+        "button_style": "button--filled",
+        "button_text": "Visit Blog",
+        "blog": ""
+      }
+    }
+  },
+  "order": [
+    "1658995208ad05f95f",
+    "9585dbdf-5519-43bd-a4c5-6aa99afe9a31",
+    "659a65bf-3115-47f3-af72-a53dd56039e2",
+    "03a45767-3819-40b4-a750-ab1add481edc",
+    "ff1b88c1-7f9a-42ed-a737-5ce178874c08",
+    "b9e1f375-bbe3-49e0-b449-eff934bd3497"
+  ]
+}

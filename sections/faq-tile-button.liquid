@@ -1,0 +1,66 @@
+{%- if section.settings.button_text != blank and section.settings.button_text != blank -%}
+  <div class="faq__button">
+    {%- render 'button',
+      type: 'link',
+      class: 'button',
+      button_style: section.settings.button_style,
+      value: section.settings.button_text,
+      href: section.settings.button_url
+    -%}
+  </div>
+{%- endif -%}
+
+
+{% schema %}
+{
+  "name": "t:sections.faq_button.name",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "select",
+      "id": "button_style",
+      "label": "t:sections.global.settings.button_style.label",
+      "options": [
+        {
+          "value": "button--filled",
+          "label": "t:sections.global.settings.button_style.options.filled.label"
+        },
+        {
+          "value": "button--outlined",
+          "label": "t:sections.global.settings.button_style.options.outlined.label"
+        },
+        {
+          "value": "button--outlined-inverse",
+          "label": "t:sections.global.settings.button_style.options.outlined_inverse.label"
+        },
+        {
+          "value": "default",
+          "label": "t:sections.global.settings.button_style.options.default.label"
+        }
+      ],
+      "info": "t:sections.global.settings.button_style.info",
+      "default": "button--filled"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "t:sections.faq_button.settings.button_text.label",
+      "default": "Contact Us"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "t:sections.faq_button.settings.button_url.label",
+      "default": "/"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.faq_button.name"
+    }
+  ],
+  "enabled_on": {
+    "templates": ["page"]
+  },
+}
+{% endschema %}

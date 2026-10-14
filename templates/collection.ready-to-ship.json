@@ -1,0 +1,304 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "countdown_timer_TJRG9N": {
+      "type": "countdown-timer",
+      "disabled": true,
+      "name": "t:sections.countdown-timer.name",
+      "settings": {
+        "fullwidth": false,
+        "layout": "image_none",
+        "spacing_top_desktop": 4,
+        "spacing_bottom_desktop": 2,
+        "spacing_top_mobile": 5,
+        "spacing_bottom_mobile": 2,
+        "border_style": "border-none",
+        "title": "New YEAR DEAL",
+        "subtitle": "20% OFF EVERYTHING | free silver jewelry included",
+        "subtitle_mobile": "20% OFF EVERYTHING | free silver jewelry included",
+        "color_scheme_text": "text-colors-inverse",
+        "color_scheme_background": "background-colors-accent-1",
+        "timer_year": 2026,
+        "timer_month": "01",
+        "timer_day": 10,
+        "timer_hour": 23,
+        "timer_minute": 59,
+        "timer_extend": 0,
+        "timer_end_message": "",
+        "show_timer_days": true,
+        "show_timer_hours": true,
+        "show_timer_minutes": true,
+        "show_timer_seconds": true,
+        "action_preference": "button",
+        "newsletter_button_label": "Submit",
+        "newsletter_success_message": "Thanks for signing up!",
+        "button_style": "button--outlined-inverse",
+        "button_text": "shop now",
+        "button_url": "shopify://collections"
+      }
+    },
+    "banner": {
+      "type": "main-collection-banner",
+      "disabled": true,
+      "settings": {
+        "enable_transparent_header": true,
+        "section_height": 10,
+        "banner_layout": "banner--full",
+        "color_scheme_text": "text-colors-default",
+        "color_scheme_background": "background-colors-default"
+      }
+    },
+    "page_banner_6ijxah": {
+      "type": "page-banner",
+      "name": "t:sections.page-banner.name",
+      "settings": {
+        "enable_transparent_header": false,
+        "padding_vertical_desktop": "",
+        "padding_vertical_mobile": "",
+        "title": "Ready To Ship Jewelry",
+        "content": "<p>Discover beautifully crafted jewelry that’s ready to go.<br/><br/>Our <strong>Ready To Ship</strong> pieces are already made and carefully packed, allowing us to deliver your order within <strong>8–9 business days</strong> — perfect for urgent gifting and special moments.</p>",
+        "search_bar": false,
+        "search_bar_placeholder": "Search for 'return' or 'size'",
+        "show_default_description": true,
+        "show_on_description": "both",
+        "content_position": "end",
+        "content_alignment": "start",
+        "media_position": "background",
+        "page_menu": "",
+        "enable_breadcrumbs": true,
+        "section_height": "100svh",
+        "image": "shopify://shop_images/Gemini_Generated_Image_yn67vayn67vayn67.png",
+        "show_controls_on_video": false,
+        "section_height_mobile": "50svh",
+        "show_controls_on_video_mobile": false,
+        "color_scheme_text": "text-colors-default",
+        "color_scheme_background": "background-colors-inverse"
+      }
+    },
+    "hero_banner_zQhY4N": {
+      "type": "hero-banner",
+      "blocks": {
+        "slide_VB7gnC": {
+          "type": "slide",
+          "settings": {
+            "banner_layout": "hero-banner--full",
+            "color_scheme_text": "text-colors-inverse",
+            "color_scheme_background": "background-colors-accent-2",
+            "header_menu_text_color": "#ffffff",
+            "image": "shopify://shop_images/Gemini_Generated_Image_yn67vayn67vayn67.png",
+            "video_external": "",
+            "enable_media_overlay_desktop": true,
+            "video_external_mobile": "",
+            "enable_media_overlay_mobile": true,
+            "content_position_horizontal": "align-start text-left",
+            "content_position_vertical": "justify-center",
+            "subtitle": "Looking for jewelry that arrives without the wait?",
+            "subtitle_url": "",
+            "title": "Ready To Ship Jewelry",
+            "content": "<p>Discover beautifully crafted jewelry that’s ready to go.<br/><br/>Our <strong>Ready To Ship</strong> pieces are already made and carefully packed, allowing us to deliver your order within <strong>8–9 business days</strong> — perfect for urgent gifting and special moments.</p>",
+            "enable_vertical_line": true,
+            "button_style": "button--filled",
+            "button_text": "View more",
+            "button_url": "/"
+          }
+        }
+      },
+      "block_order": [
+        "slide_VB7gnC"
+      ],
+      "disabled": true,
+      "name": "t:sections.hero-banner.name",
+      "settings": {
+        "enable_transparent_header": true,
+        "slider_height": 100,
+        "slider_autoplay": false,
+        "slider_autoplay_interval": 6,
+        "slider_arrows": false,
+        "slider_arrows_position": "hero__swiper-buttons--sides",
+        "slider_arrows_color": "text-colors-inverse"
+      }
+    },
+    "spacing_MRg6Gt": {
+      "type": "spacing",
+      "name": "t:sections.spacing.name",
+      "settings": {
+        "color_scheme_background": "background-colors-default",
+        "spacing_desktop": 18,
+        "spacing_mobile": 16
+      }
+    },
+    "main": {
+      "type": "main-collection",
+      "blocks": {
+        "text_card_Vd8qe3": {
+          "type": "text-card",
+          "settings": {
+            "color_scheme_text": "color-text-secondary",
+            "color_scheme_background": "background-colors-accent-1",
+            "position": 8,
+            "title": "Heading goes here",
+            "text_size": "1",
+            "button_text": "",
+            "button_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "text_card_Vd8qe3"
+      ],
+      "settings": {
+        "color_scheme_text": "color-text-primary",
+        "color_scheme_background": "background-colors-default",
+        "enable_products_count": false,
+        "enable_sorting": true,
+        "enable_filters": true,
+        "filters_style": "sidebar",
+        "sidebar_navigation": "",
+        "column_gap_desktop": 1,
+        "column_gap_mobile": 0.2,
+        "products_per_page": 30,
+        "products_per_row_default": "3",
+        "products_per_row_ui": true,
+        "pagination_style": "default",
+        "button_style": "button--outlined"
+      }
+    },
+    "hero_alt_7m4T3V": {
+      "type": "hero-alt",
+      "blocks": {
+        "text_fMCVxD": {
+          "type": "text",
+          "settings": {
+            "subtitle": "",
+            "title": "Not in a Hurry To Find a Ring?",
+            "content": "<p>Take your time with a custom-made engagement piece, designed with you at every step.</p>",
+            "button_style": "button--filled",
+            "button_text": "View more",
+            "button_url": "shopify://collections",
+            "button_separator": true
+          }
+        },
+        "media_LBNT3m": {
+          "type": "media",
+          "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_u3j87fu3j87fu3j8.png"
+          }
+        }
+      },
+      "block_order": [
+        "text_fMCVxD",
+        "media_LBNT3m"
+      ],
+      "name": "t:sections.hero-alt.name",
+      "settings": {
+        "hero_alt_banner_height": 50,
+        "padding_vertical_desktop": "",
+        "padding_vertical_mobile": "",
+        "color_scheme_text": "text-colors-default",
+        "color_scheme_background": "background-colors-accent-2"
+      }
+    },
+    "page_banner_6y7FQ7": {
+      "type": "page-banner",
+      "disabled": true,
+      "name": "t:sections.page-banner.name",
+      "settings": {
+        "enable_transparent_header": false,
+        "padding_vertical_desktop": "",
+        "padding_vertical_mobile": "",
+        "title": "",
+        "content": "",
+        "search_bar": false,
+        "search_bar_placeholder": "Search for 'return' or 'size'",
+        "show_default_description": false,
+        "show_on_description": "desktop",
+        "content_position": "center",
+        "content_alignment": "center",
+        "media_position": "background",
+        "page_menu": "",
+        "enable_breadcrumbs": true,
+        "section_height": "33svh",
+        "show_controls_on_video": false,
+        "section_height_mobile": "50svh",
+        "show_controls_on_video_mobile": false,
+        "color_scheme_text": "text-colors-secondary",
+        "color_scheme_background": "background-colors-accent-1"
+      }
+    },
+    "176769167824c721a8": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_d283036_AKrGyn": {
+          "type": "ai_gen_block_d283036",
+          "settings": {
+            "heading": "Frequently Asked Questions",
+            "heading_alignment": "center",
+            "heading_size": 32,
+            "heading_color": "#111111",
+            "question_1": "What does “Ready To Ship” mean?",
+            "answer_1": "<p>Ready To Ship jewelry includes pieces that are already crafted and available in stock. These items do not require manufacturing time and can be dispatched quickly.</p>",
+            "question_2": "How long does delivery take?",
+            "answer_2": "<p>Ready To Ship orders are delivered within <strong>8–9 business days</strong> after dispatch, depending on your location.</p>",
+            "question_3": "Can a Ready To Ship ring be resized?",
+            "answer_3": "<p>Yes, limited resizing of <strong>up to one size up or down</strong> may be possible. However, this depends on the ring design.<br/><br/>Please contact us to verify before placing your order at <a><strong>support@crownmoissanite.com</strong></a></p>",
+            "question_4": "Can Ready To Ship items be customized?",
+            "answer_4": "<p>No, these items cannot be customized as they are already made and prepared for immediate shipping.</p>",
+            "question_5": "Are Ready To Ship items brand new?",
+            "answer_5": "<p>Yes, all Ready To Ship pieces are brand new, unused, and quality-checked before shipping.</p>",
+            "question_6": "Is the quality the same as made-to-order jewelry?",
+            "answer_6": "<p>Yes, Ready To Ship jewelry follows the same quality standards and craftsmanship as our made-to-order pieces.</p>",
+            "question_7": "What if the size doesn’t fit?",
+            "answer_7": "<p>If the size doesn’t fit, please contact our support team after delivery and we’ll assist you with available options.</p>",
+            "question_8": "Are Ready To Ship items limited in stock?",
+            "answer_8": "<p>Yes, Ready To Ship items are available in limited quantities and are sold on a first-come, first-served basis.</p>",
+            "question_9": "How do I care for my product?",
+            "answer_9": "<p>Care instructions are included with each product. Generally, we recommend gentle cleaning and proper storage to maintain quality.</p>",
+            "question_10": "Will I receive tracking details for my order?",
+            "answer_10": "<p>Yes, once your Ready To Ship order is dispatched, you will receive tracking details via email.</p>",
+            "allow_multiple": false,
+            "section_padding": 40,
+            "item_spacing": 15,
+            "border_radius": 8,
+            "border_color": "#e6e2e1",
+            "item_background": "#ffffff",
+            "question_size": 16,
+            "question_padding": 18,
+            "question_color": "#ffffff",
+            "question_background": "#111111",
+            "question_hover_background": "#111111",
+            "icon_color": "#ffffff",
+            "answer_size": 14,
+            "answer_padding": 18,
+            "answer_color": "#111111",
+            "answer_background": "#ffffff",
+            "desktop_width_percent": 100
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_d283036_AKrGyn"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "countdown_timer_TJRG9N",
+    "banner",
+    "page_banner_6ijxah",
+    "hero_banner_zQhY4N",
+    "spacing_MRg6Gt",
+    "main",
+    "hero_alt_7m4T3V",
+    "page_banner_6y7FQ7",
+    "176769167824c721a8"
+  ]
+}

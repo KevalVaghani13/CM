@@ -1,0 +1,154 @@
+{%- if section.blocks.size > 0 -%}
+  {{ 'section-faq-tile.css' | asset_url | stylesheet_tag }}
+  <script src="{{- 'faq-tile.js' | asset_url -}}" defer="defer"></script>
+  <section class="faq-tile {{ section.settings.color_scheme_text }} {{ section.settings.color_scheme_background }} faq-tile-wrapper">
+    <div class="faq-tile__content" data-url-handle="{{ section.settings.title | handle }}">
+      <div class="faq-tile__content--media">
+        {%- liquid
+          if section.settings.image != blank
+            render 'image', image: section.settings.image, alt: section.settings.image.alt
+          else
+            echo 'image' | placeholder_svg_tag: 'placeholder-svg'
+          endif
+        -%}
+      </div>
+
+      <div class="faq-tile__content--title">
+        {{ section.settings.title }}
+      </div>
+      <div class="faq-tile__content--subtitle hidden">
+        <div>
+          {%- for block in section.blocks -%}
+            {{ block.settings.title }}
+          {%- endfor -%}
+        </div>
+      </div>
+      <div class="faq-tile__content--subtitle-content hidden">
+        <div>
+          {%- for block in section.blocks -%}
+            {{ block.settings.content }}
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+    <div class="faq-tile__list" style="display: none;">
+      <div class="faq-tile__list--sidebar">
+      </div>
+      <div>
+        <button type='button' class='button faq-tile__list--back-button'>
+          {%- render 'icon-chevron-start' -%}
+          <span>Back</span>
+        </button>
+        <div class="faq-tile__list--content"></div>
+      </div>
+    </div>
+  </section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "t:sections.faq_tile.name",
+  "class": "section-faq-tile",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.global.settings.header_color_scheme.content"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme_text",
+      "label": "t:sections.global.settings.color_scheme_text.label",
+      "options": [
+        {
+          "value": "text-colors-default",
+          "label": "t:sections.global.settings.color_scheme_text.options.default.label"
+        },
+        {
+          "value": "text-colors-secondary",
+          "label": "t:sections.global.settings.color_scheme_text.options.secondary.label"
+        },
+        {
+          "value": "text-colors-inverse",
+          "label": "t:sections.global.settings.color_scheme_text.options.inverse.label"
+        }
+      ],
+      "default": "text-colors-default"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme_background",
+      "label": "t:sections.global.settings.color_scheme_background.label",
+      "options": [
+        {
+          "value": "background-colors-default",
+          "label": "t:sections.global.settings.color_scheme_background.options.default.label"
+        },
+        {
+          "value": "background-colors-secondary",
+          "label": "t:sections.global.settings.color_scheme_background.options.secondary.label"
+        },
+        {
+          "value": "background-colors-accent-1",
+          "label": "t:sections.global.settings.color_scheme_background.options.accent_one.label"
+        },
+        {
+          "value": "background-colors-accent-2",
+          "label": "t:sections.global.settings.color_scheme_background.options.accent_two.label"
+        },
+        {
+          "value": "background-colors-inverse",
+          "label": "t:sections.global.settings.color_scheme_background.options.inverse.label"
+        }
+      ],
+      "default": "background-colors-default"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:sections.faq_tile.blocks.content.settings.title.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:sections.faq_tile.settings.image.label"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "content",
+      "name": "t:sections.faq_tile.blocks.content.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "t:sections.faq_tile.blocks.content.settings.title.label"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "t:sections.faq_tile.blocks.content.settings.content.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.faq_tile.name"
+    }
+  ],
+  "enabled_on": {
+    "templates": ["page"]
+  }
+}
+{% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "            render 'image', image: section.settings.image, alt: section.settings.image.alt
+    | escape"
+  to: "            render 'image', image: section.settings.image, alt: section.settings.image.alt"
+  position: 504..594
+{% endcomment %}

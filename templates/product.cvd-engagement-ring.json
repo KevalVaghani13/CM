@@ -1,0 +1,256 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "1e0c79e9-7de0-4eee-b9c5-f27132635fb8": {
+          "type": "title",
+          "settings": {}
+        },
+        "8effeb43-55b7-4ec4-ab9b-68bcd89b865b": {
+          "type": "price",
+          "settings": {
+            "show_price_extra_info": true
+          }
+        },
+        "1e939cd6-0958-4135-a9e5-c50faef01437": {
+          "type": "variant_picker",
+          "settings": {
+            "title": "Variant picker",
+            "back_in_stock": true,
+            "variant_picker_type": "dropdowns",
+            "variant_picker_layout": "product-selector--default",
+            "size_guide_page": "size-guide"
+          }
+        },
+        "1e939cd6-0955-4135-a9e5-c50faef01437": {
+          "type": "purchase_options",
+          "settings": {}
+        },
+        "8604a6ff-ad0b-44dd-8068-1de4e062f8e8": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_quantity": true,
+            "quantity_type": "inline",
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": false
+          }
+        },
+        "41660472-603e-40f6-aa17-4db6a7886cc7": {
+          "type": "content_tabs",
+          "disabled": true,
+          "settings": {
+            "tabs_alignment": "left",
+            "tabs_content_alignment": "left",
+            "tab_one_show": true,
+            "tab_one_open_by_default": true,
+            "show_product_content": false,
+            "product_content_type": "all",
+            "tab_one_title": "",
+            "tab_one_content": "<p>You can show content from product description or you enter custom description for all products. Choice is yours.</p>",
+            "tab_one_page": "",
+            "tab_two_show": true,
+            "tab_two_open_by_default": false,
+            "tab_two_title": "",
+            "tab_two_content": "<p>You can add custom content for all products or you can add dynamic content.</p>",
+            "tab_two_page": "",
+            "tab_three_show": false,
+            "tab_three_open_by_default": false,
+            "tab_three_title": "",
+            "tab_three_content": "",
+            "tab_three_page": "",
+            "tab_four_show": false,
+            "tab_four_open_by_default": false,
+            "tab_four_title": "",
+            "tab_four_content": "",
+            "tab_four_page": ""
+          }
+        },
+        "e6d841d6-2f71-40b3-956a-912df13f9f6e": {
+          "type": "inventory_notice",
+          "settings": {
+            "inventory_threshold": 15,
+            "notice_just_text": false
+          }
+        },
+        "b2dabe12-2158-4ba6-bc54-9baae453acf5": {
+          "type": "text",
+          "settings": {
+            "text": "Free delivery and shipping",
+            "text_style": "body",
+            "link_to_resource": "none"
+          }
+        },
+        "1ad0121e-439d-45c0-b45d-4f080836ade5": {
+          "type": "text",
+          "settings": {
+            "text": "Secure online payment",
+            "text_style": "body",
+            "link_to_resource": "none"
+          }
+        },
+        "7be6b89c-da83-4ff2-9b85-44fb28cbfa27": {
+          "type": "pickup-availability",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "1e0c79e9-7de0-4eee-b9c5-f27132635fb8",
+        "8effeb43-55b7-4ec4-ab9b-68bcd89b865b",
+        "1e939cd6-0958-4135-a9e5-c50faef01437",
+        "1e939cd6-0955-4135-a9e5-c50faef01437",
+        "8604a6ff-ad0b-44dd-8068-1de4e062f8e8",
+        "41660472-603e-40f6-aa17-4db6a7886cc7",
+        "e6d841d6-2f71-40b3-956a-912df13f9f6e",
+        "b2dabe12-2158-4ba6-bc54-9baae453acf5",
+        "1ad0121e-439d-45c0-b45d-4f080836ade5",
+        "7be6b89c-da83-4ff2-9b85-44fb28cbfa27"
+      ],
+      "settings": {
+        "section_width": "container-fluid",
+        "product_media_layout": "product__media-layout--partial",
+        "slides_with_thumbs": "only_mobile",
+        "product_media_object_fit": "contain",
+        "thumb_media_object_fit": "contain",
+        "media_aspect_ratio": "default",
+        "adaptive_ratio_and_auto_height": "default",
+        "slider_background_color_transparent": true,
+        "padding_vertical_desktop": "pt-0-desktop pb-0-desktop",
+        "padding_vertical_mobile": "pt-0-mobile pb-0-mobile",
+        "breadcrumbs_color_scheme_text": "text-colors-default",
+        "tags_color_scheme_text": "text-colors-default",
+        "arrows_color": "text-colors-default",
+        "show_tags_on_mobile": true,
+        "enable_actions_bar": true,
+        "horizontal_alignment": "text-left"
+      }
+    },
+    "977cac03-4044-4567-8907-fa55103a47eb": {
+      "type": "complete-the-set",
+      "blocks": {
+        "fec25a48-cc42-4f7d-bbf5-215567a945e9": {
+          "type": "popup-drawer",
+          "settings": {
+            "button_text": "Description",
+            "button_type": "drawer",
+            "button_url": "shopify://products/birdie-bottoms-nero",
+            "drawer_richtext": "<p>[description]</p>",
+            "drawer_page": ""
+          }
+        },
+        "4f41f466-653b-4675-91c2-051a7830a3cc": {
+          "type": "popup-drawer",
+          "settings": {
+            "button_text": "Manufacturing and Shipping",
+            "button_type": "drawer",
+            "button_url": "",
+            "drawer_richtext": "<p>Shipping and returns can be inserted here.</p>",
+            "drawer_page": "shipping-policy"
+          }
+        },
+        "f9d768f7-b69b-4425-b3d7-33216740b2dd": {
+          "type": "popup-drawer",
+          "settings": {
+            "button_text": "Ring Size Guide",
+            "button_type": "drawer",
+            "button_url": "",
+            "drawer_richtext": "<p>Stylist tips can be entered here.</p>",
+            "drawer_page": "ring-size-guide"
+          }
+        },
+        "94d964a1-0d79-4544-8288-24863da87e2d": {
+          "type": "popup-drawer",
+          "settings": {
+            "button_text": "Lifetime warranty",
+            "button_type": "link",
+            "button_url": "",
+            "drawer_richtext": "<p>Model measurements can be inserted here.</p>",
+            "drawer_page": "lifetime-warranty"
+          }
+        },
+        "ab4932da-0d31-4117-a170-3d12f59976ca": {
+          "type": "popup-drawer",
+          "settings": {
+            "button_text": "Return and Refund Policy",
+            "button_type": "link",
+            "button_url": "shopify://pages/contact-us",
+            "drawer_richtext": "",
+            "drawer_page": "refund-policy"
+          }
+        }
+      },
+      "block_order": [
+        "fec25a48-cc42-4f7d-bbf5-215567a945e9",
+        "4f41f466-653b-4675-91c2-051a7830a3cc",
+        "f9d768f7-b69b-4425-b3d7-33216740b2dd",
+        "94d964a1-0d79-4544-8288-24863da87e2d",
+        "ab4932da-0d31-4117-a170-3d12f59976ca"
+      ],
+      "settings": {
+        "padding_vertical_desktop": "",
+        "padding_vertical_mobile": "",
+        "color_scheme_text": "text-colors-secondary",
+        "color_scheme_background": "background-colors-default",
+        "title": "Complete the set",
+        "content_type": "image",
+        "default_product": "",
+        "flip_desktop": true,
+        "flip_mobile": true
+      }
+    },
+    "recommendations": {
+      "type": "product-recommendations",
+      "settings": {
+        "padding_vertical_desktop": "",
+        "padding_vertical_mobile": "",
+        "layout": "layout-1",
+        "gap_between_desktop": 2,
+        "gap_between_mobile": 2,
+        "color_scheme_text": "text-colors-default",
+        "color_scheme_background": "background-colors-accent-1",
+        "title": "You may also like",
+        "products": [],
+        "max_products": 8,
+        "show_unavailable_products": false
+      }
+    },
+    "recently_viewed": {
+      "type": "recently-viewed-products",
+      "settings": {
+        "padding_vertical_desktop": "pt-0-desktop",
+        "padding_vertical_mobile": "pt-0-mobile",
+        "layout": "layout-1",
+        "gap_between_desktop": 2,
+        "gap_between_mobile": 2,
+        "color_scheme_text": "text-colors-default",
+        "color_scheme_background": "background-colors-accent-1",
+        "title": "Recently viewed",
+        "button_text": "",
+        "button_url": "",
+        "button_style": "button--filled",
+        "max_products": 8,
+        "show_unavailable_products": false
+      }
+    },
+    "166904322806a89075": {
+      "type": "apps",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "977cac03-4044-4567-8907-fa55103a47eb",
+    "recommendations",
+    "recently_viewed",
+    "166904322806a89075"
+  ]
+}

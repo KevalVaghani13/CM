@@ -1,0 +1,557 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "e4a22221-96e8-47eb-8e41-ff9780104ed3": {
+      "type": "page-banner",
+      "settings": {
+        "enable_transparent_header": false,
+        "padding_vertical_desktop": "pt-0-desktop pb-0-desktop",
+        "padding_vertical_mobile": "pt-0-mobile",
+        "title": "FAQS",
+        "content": "",
+        "search_bar": false,
+        "search_bar_placeholder": "",
+        "show_default_description": true,
+        "show_on_description": "both",
+        "content_position": "center",
+        "content_alignment": "center",
+        "media_position": "background",
+        "page_menu": "",
+        "enable_breadcrumbs": true,
+        "section_height": "33svh",
+        "video_external": "",
+        "show_controls_on_video": false,
+        "section_height_mobile": "33svh",
+        "video_external_mobile": "",
+        "show_controls_on_video_mobile": false,
+        "color_scheme_text": "text-colors-default",
+        "color_scheme_background": "background-colors-accent-2"
+      }
+    },
+    "accordions_yxApA3": {
+      "type": "accordions",
+      "blocks": {
+        "topic_CezH8q": {
+          "type": "topic",
+          "settings": {
+            "is_open": true,
+            "title": "Should I buy an engagement ring from Crown Moissanite?",
+            "content": "<p>Yes. Crown Moissanite offers premium-quality, ethically sourced moissanite rings that combine timeless beauty, durability, and affordability.</p>",
+            "page": ""
+          }
+        },
+        "topic_phEhBi": {
+          "type": "topic",
+          "settings": {
+            "is_open": false,
+            "title": "What are the most important things to consider when buying moissanite jewelry?",
+            "content": "<p>Focus on the cut, color, and setting quality. Choose reputable brands that provide authenticity certificates and warranties for long-term assurance.</p>",
+            "page": ""
+          }
+        },
+        "topic_63Pj7k": {
+          "type": "topic",
+          "settings": {
+            "is_open": false,
+            "title": "What does Crown Moissanite’s Lifetime Warranty cover?",
+            "content": "<p>Our Lifetime Warranty covers manufacturing defects, loose stones, and craftsmanship issues. Please note that normal wear and tear or accidental damage is not included.</p>",
+            "page": ""
+          }
+        },
+        "topic_NNDaBt": {
+          "type": "topic",
+          "settings": {
+            "is_open": false,
+            "title": "What makes Crown Moissanite different from other jewelry brands?",
+            "content": "<p>Crown Moissanite stands out for its handcrafted, ethically sourced fine jewelry made with exceptional craftsmanship and attention to detail. Each piece is custom-made, offering luxury quality, fair pricing, and a lifetime warranty for lasting trust.</p>",
+            "page": ""
+          }
+        },
+        "topic_69c36d": {
+          "type": "topic",
+          "settings": {
+            "is_open": false,
+            "title": "Can I book a virtual consultation before ordering?",
+            "content": "<p>Yes. You can schedule a video call with our jewelry experts to discuss your preferences and view pieces live.</p>",
+            "page": ""
+          }
+        },
+        "topic_zaf6Pi": {
+          "type": "topic",
+          "settings": {
+            "is_open": false,
+            "title": "Does Crown Moissanite have a physical store?",
+            "content": "<p>No. Crown Moissanite is an online-only brand. We operate exclusively through our website to provide handcrafted, made-to-order jewelry to customers worldwide.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "topic_CezH8q",
+        "topic_phEhBi",
+        "topic_63Pj7k",
+        "topic_NNDaBt",
+        "topic_69c36d",
+        "topic_zaf6Pi"
+      ],
+      "name": "t:sections.accordions.name",
+      "settings": {
+        "padding_vertical_desktop": "",
+        "padding_vertical_mobile": "",
+        "color_scheme_text": "text-colors-default",
+        "color_scheme_background": "background-colors-default",
+        "title": "about us"
+      }
+    },
+    "accordions": {
+      "type": "accordions",
+      "blocks": {
+        "c2e5d07c-3d54-4bad-b3ae-694d1ef7dbed": {
+          "type": "topic",
+          "settings": {
+            "is_open": false,
+            "title": "⛭ Do you offer custom design?",
+            "content": "<p>✧ Yes, we do. You have to share your dream jewelry images with us and we will create it for you.</p>",
+            "page": ""
+          }
+        },
+        "06f97daa-496a-417b-aa49-d8a47260cf78": {
+          "type": "topic",
+          "settings": {
+            "is_open": false,
+            "title": "⛭ How custom order work?",
+            "content": "<p>✧ We will be pleased to receive the customized and personalized order. We have a simple procedure for customized orders, the steps are as below...</p><ol><li>Start a conversation with one of our jewelry designers about your customized design. They will help you in the designing process of your jewelry also if you have a specific design in your mind send us a picture.</li><li>We will create CAD (Computer Design) of your jewelry and send it to you for confirmation. If you need any changes you can let us know we will do changes according to your requirements.</li><li>Once the CAD is approved from your side. We will Cut & Polish your Moissanite Diamond and start the jewelry manufacturing process.</li><li>When your jewelry is ready to ship, we will share the Images & Videos of your jewelry and then ship it with an international courier company.</li></ol><p>→ Hurry! Now you will have it in your hand in a short time.</p>",
+            "page": ""
+          }
+        },
+        "e957eb44-fbe4-4f40-a034-48a4d0a4099a": {
+          "type": "topic",
+          "settings": {
+            "is_open": false,
+            "title": "⛭ Can I customize a Crown Moissanite design?",
+            "content": "<p>✧ Yes, most of our designs can be customized to suit your taste and lifestyle, as an example Moissanite can be replaced with Diamond, Sapphires or Emeralds, prong styles can be changes from traditional to claw. Simple design changes will add a extra minimal fee, if the ring design changes in a more significant way like two rings put together, larger or smaller stones are required, a design element is added or removed or if a design image is required, there will be additional charges, or the design may be considered custom at the designer's discretion. Contact Us to discuss the possibilities or to request a quote.</p>",
+            "page": ""
+          }
+        },
+        "50884bbc-77d4-4b96-a625-6fc5e6418f48": {
+          "type": "topic",
+          "settings": {
+            "is_open": false,
+            "title": "⛭ Why is buying diamonds from us the best choice?",
+            "content": "<p>We obtain natural diamonds from the best sources available. Using state of the art cutting instruments utilized by experts, we meticulously cut and polish our diamonds to meet the demand of discerning customers just like you. For an extra layer of confidence, your loose diamond or diamond jewelry purchased from Crown Moissanite is accompanied by a diamond certificate.</p>",
+            "page": ""
+          }
+        },
+        "34b3eb6c-7059-43df-bdf1-7aa6c83ff27b": {
+          "type": "topic",
+          "settings": {
+            "is_open": false,
+            "title": "⛭ Can I order a Crown Moissanite design with any center stone size & shape?",
+            "content": "<p>✧ Yes, all of our designs are meant to be customized with your choice of center stone and metal! Most work well with center stone sizes from 0.30 carats to 3.0 carats, and in many shapes like oval, pear, brilliant, etc. Contact Us for center stone size & shape changes.<br/></p>",
+            "page": ""
+          }
+        },
+        "topic_NkpxVV": {
+          "type": "topic",
+          "settings": {
+            "is_open": false,
+            "title": "⛭ Can I upgrade my Diamond in future?",
+            "content": "<p>✧ Crown Moissanite is proud to offer lifetime diamond upgrades<strong>.</strong></p>",
+            "page": ""
+          }
+        },
+        "topic_wFMVwf": {
+          "type": "topic",
+          "settings": {
+            "is_open": false,
+            "title": "⛭ Do you offer engraving?",
+            "content": "<p>✧ Yes, we offer Free engraving service on our all precious fine jewelry.<br/>After engrave we request to double-check on engraving and ask for the images of engraving before we ship it out to you</p>",
+            "page": ""
+          }
+        },
+        "topic_fk3wRc": {
+          "type": "topic",
+          "settings": {
+            "is_open": false,
+            "title": "⛭ Can I Buy a Setting Without Buying a Diamond?",
+            "content": "<p>✧ Yes We do sell only setting.</p>",
+            "page": ""
+          }
+        },
+        "topic_BpqY8n": {
+          "type": "topic",
+          "settings": {
+            "is_open": false,
+            "title": "⛭ Do you accept orders over the phone?",
+            "content": "<p>✧ Yes. If you prefer to place your order over the phone, we are happy to assist you for all of your questions. You can reach us at +1(708)300-0187 anytime.</p>",
+            "page": ""
+          }
+        },
+        "topic_eEDjcX": {
+          "type": "topic",
+          "settings": {
+            "is_open": false,
+            "title": "⛭ Is it possible for me to pay using two different Credit Cards?",
+            "content": "<p>✧ No, You can't pay using multiple credit cards. But Please contact us if you would like to pay with Multiple credit cards. We will split the bill in multiple invoices and then you can pay using multiple credit cards.</p>",
+            "page": ""
+          }
+        },
+        "topic_Jq3qDQ": {
+          "type": "topic",
+          "settings": {
+            "is_open": false,
+            "title": "⛭ Do You Offer Payment Plans?",
+            "content": "<p>✧ Yes, we offer payment plans. You can make your payment in 3 different part of your total amount.<strong><br/></strong></p><h2></h2><p><strong>First:</strong> 35% Payment so we will start CAD design process and confirm with you before start manufacturing process. If you need any changes we will do as per your request.</p><h2></h2><p><strong>Second:</strong> Another, 35% Payment. Now, we will start cutting & polishing process of your diamond and send the video of your forever one diamond.</p><h2></h2><p><strong>Third:</strong> Rest of 30% Payment you have to play before we ship your jewelry. Once, your jewelry is ready to ship we will share the images & video to confirm with you and ship with express courier service.</p>",
+            "page": ""
+          }
+        },
+        "topic_cbYMNb": {
+          "type": "topic",
+          "settings": {
+            "is_open": false,
+            "title": "⛭ Rush Order service available?",
+            "content": "<p>✧ Yes, we offer rush order service so that you will get your jewelry before the best moment of your life. We do not charge any extra money for rush orders, but please contact us our executives to get exact manufacturing timing at<a href=\"mailto:support@crownmoissanite.com\" target=\"_blank\" title=\"mailto:support@crownmoissanite.com\"> support@crownmoissanite.com</a>.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "c2e5d07c-3d54-4bad-b3ae-694d1ef7dbed",
+        "06f97daa-496a-417b-aa49-d8a47260cf78",
+        "e957eb44-fbe4-4f40-a034-48a4d0a4099a",
+        "50884bbc-77d4-4b96-a625-6fc5e6418f48",
+        "34b3eb6c-7059-43df-bdf1-7aa6c83ff27b",
+        "topic_NkpxVV",
+        "topic_wFMVwf",
+        "topic_fk3wRc",
+        "topic_BpqY8n",
+        "topic_eEDjcX",
+        "topic_Jq3qDQ",
+        "topic_cbYMNb"
+      ],
+      "settings": {
+        "padding_vertical_desktop": "",
+        "padding_vertical_mobile": "",
+        "color_scheme_text": "text-colors-default",
+        "color_scheme_background": "background-colors-default",
+        "title": "Design & Ordering"
+      }
+    },
+    "15d37dcd-dfe5-404c-80f1-8f76c2017e23": {
+      "type": "accordions",
+      "blocks": {
+        "template--17062096503099__15d37dcd-dfe5-404c-80f1-8f76c2017e23-16696259764c4b7b62-0": {
+          "type": "topic",
+          "settings": {
+            "is_open": false,
+            "title": "⛭ What is Moissanite?",
+            "content": "<p>✧ Moissanite is a new category of gemstone with fire, brilliance and luster more than any other gemstones in the world including diamonds! It is NOT a cubic zirconia which is just a piece of glass but It is a gemstone which looks and lasts like a Diamond Forever <a href=\"https://crownmoissanite.com/pages/what-is-moissanite-diamond-and-its-history?_pos=1&_psq=what+is&_ss=e&_v=1.0\" target=\"_blank\" title=\"https://crownmoissanite.com/pages/what-is-moissanite-diamond-and-its-history?_pos=1&_psq=what+is&_ss=e&_v=1.0\"><strong>LEARN MORE</strong></a></p>",
+            "page": ""
+          }
+        },
+        "topic_FRRVVh": {
+          "type": "topic",
+          "settings": {
+            "is_open": false,
+            "title": "⛭ Does moissanite change color over time?",
+            "content": "<p>No. High-quality moissanite will never lose its color or become cloudy. It maintains its brilliance and clarity for a lifetime.</p>",
+            "page": ""
+          }
+        },
+        "topic_L7Hy9U": {
+          "type": "topic",
+          "settings": {
+            "is_open": false,
+            "title": "⛭ Is moissanite suitable for daily wear jewelry?",
+            "content": "<p>Yes. Moissanite is highly durable, second only to diamonds on the hardness scale, making it ideal for everyday jewelry like engagement rings and wedding bands.</p>",
+            "page": ""
+          }
+        },
+        "template--17062096503099__15d37dcd-dfe5-404c-80f1-8f76c2017e23-16696259764c4b7b62-1": {
+          "type": "topic",
+          "settings": {
+            "is_open": false,
+            "title": "⛭ Are Moissanite available in all shape & size?",
+            "content": "<p>✧ Yes, Moissanite are available in all shapes Like Round, Princess, Pear, Oval, Radiant, Trillion, Marquise, Emerald and Cushion. They are also available in all sizer from 0.05ct to 15.0ct.</p><h2></h2>",
+            "page": ""
+          }
+        },
+        "template--17062096503099__15d37dcd-dfe5-404c-80f1-8f76c2017e23-16696259764c4b7b62-2": {
+          "type": "topic",
+          "settings": {
+            "is_open": false,
+            "title": "⛭ Your Moissanite is Charles & Colvard Moissanite?",
+            "content": "<p>✧ No, we have our own manufacturing factory in Surat (Diamond City) INDIA. All our Moissanite Diamonds are cut & polished by professional artisan of Crown Moissanite Family. We have a team of gemologists who will inspect the diamonds before we stud them in jewelry.</p><h2></h2>",
+            "page": ""
+          }
+        },
+        "topic_dBcn9r": {
+          "type": "topic",
+          "settings": {
+            "is_open": false,
+            "title": "⛭ Your Moissanite Diamonds are Certified?",
+            "content": "<p>✧ Yes, all our Moissanite Diamonds are certified and tested by International Laboratory. We give a physical authenticity certificate card of your diamond jewelry on request. You must pay a $50USD certification charge. You can also check the authenticity of diamonds from any International Laboratory in your country.</p><h2></h2>",
+            "page": ""
+          }
+        },
+        "topic_rYYWdN": {
+          "type": "topic",
+          "settings": {
+            "is_open": false,
+            "title": "⛭ Your Jewelry set in Solid Gold?",
+            "content": "<p>✧ Yes, all our Jewelry is make in Solid 10KT, 14KT or 18KT Gold. The color of the gold can be chosen from White, Yellow or Rose.</p><h2></h2>",
+            "page": ""
+          }
+        },
+        "topic_K6cwwb": {
+          "type": "topic",
+          "settings": {
+            "is_open": false,
+            "title": "⛭ Does your Jewelry comes with Metal Authenticity Stamp?",
+            "content": "<p>✧ Yes, all jewelry comes with metal authenticity stamps. Once your jewelry is ready to ship at our manufacturing unit after that we will send it to the International hallmarking laboratory they will check the metal authenticity & stamp on it.</p><h2></h2>",
+            "page": ""
+          }
+        },
+        "topic_F4x3FG": {
+          "type": "topic",
+          "settings": {
+            "is_open": false,
+            "title": "⛭ What Metal Do you use?",
+            "content": "<p>We use gold metal, specifically gold with an authenticity stamp. The authenticity stamp ensures the quality and genuineness of the gold used in our products.</p>",
+            "page": ""
+          }
+        },
+        "topic_zT9U8T": {
+          "type": "topic",
+          "settings": {
+            "is_open": false,
+            "title": "⛭ Are lab grown diamonds real?",
+            "content": "<p>Yes! Lab grown diamonds are just as real as mined diamonds.</p><p>With the exact same optical, chemical, thermal and physical properties, the only difference between lab grown diamonds and mined diamonds is their origin. Lab grown diamonds are grown in controlled laboratory environments that produce the same pressure and heat conditions that form mined diamonds in the earth's crust.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--17062096503099__15d37dcd-dfe5-404c-80f1-8f76c2017e23-16696259764c4b7b62-0",
+        "topic_FRRVVh",
+        "topic_L7Hy9U",
+        "template--17062096503099__15d37dcd-dfe5-404c-80f1-8f76c2017e23-16696259764c4b7b62-1",
+        "template--17062096503099__15d37dcd-dfe5-404c-80f1-8f76c2017e23-16696259764c4b7b62-2",
+        "topic_dBcn9r",
+        "topic_rYYWdN",
+        "topic_K6cwwb",
+        "topic_F4x3FG",
+        "topic_zT9U8T"
+      ],
+      "settings": {
+        "padding_vertical_desktop": "",
+        "padding_vertical_mobile": "",
+        "color_scheme_text": "text-colors-default",
+        "color_scheme_background": "background-colors-default",
+        "title": "Stone and Metal"
+      }
+    },
+    "accordions_epKqxf": {
+      "type": "accordions",
+      "blocks": {
+        "topic_qa7NjP": {
+          "type": "topic",
+          "settings": {
+            "is_open": false,
+            "title": "⛭ How long will my order take?",
+            "content": "<p>✧ Each piece of our ethical fine jewelry is hand made especially for you, with love and care. Your beautiful piece of jewelry will be made in max. 3 weeks with shipping time. Custom, Customized and Engraved pieces will require additional time.</p>",
+            "page": ""
+          }
+        },
+        "topic_4eJjce": {
+          "type": "topic",
+          "settings": {
+            "is_open": false,
+            "title": "⛭ Do you ship Internationally?",
+            "content": "<p>✧ Yes, we ship our jewelry all over the world.</p>",
+            "page": ""
+          }
+        },
+        "topic_W7h9eh": {
+          "type": "topic",
+          "settings": {
+            "is_open": false,
+            "title": "⛭ How do I track my order?",
+            "content": "<p>✧ Once, we dispatch your jewelry from our manufacturing unit after that we will update you with the tracking information so you can track your package. If you facing any error to track your jewelry please contact us at <a href=\"mailto:support@crownmoissanite.com.\" target=\"_blank\" title=\"mailto:support@crownmoissanite.com.\">support@crownmoissanite.com.</a></p>",
+            "page": ""
+          }
+        },
+        "topic_QbX8Mx": {
+          "type": "topic",
+          "settings": {
+            "is_open": false,
+            "title": "⛭ Can I change my shipping address before item ship?",
+            "content": "<p>✧ Yes, you can change the address before item ship from our manufacturing facility by sending a direct message, once the item is shipped out you can't change. We will not be responsible for any loss of parcel that occurs due to a wrong address.</p><h2></h2>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "topic_qa7NjP",
+        "topic_4eJjce",
+        "topic_W7h9eh",
+        "topic_QbX8Mx"
+      ],
+      "name": "t:sections.accordions.name",
+      "settings": {
+        "padding_vertical_desktop": "",
+        "padding_vertical_mobile": "",
+        "color_scheme_text": "text-colors-default",
+        "color_scheme_background": "background-colors-default",
+        "title": "Processing & Shipping"
+      }
+    },
+    "accordions_bxzxXw": {
+      "type": "accordions",
+      "blocks": {
+        "topic_CFdLgM": {
+          "type": "topic",
+          "settings": {
+            "is_open": false,
+            "title": "⛭ What is Crown Moissanite Return & Refund Policy?",
+            "content": "<p>✧ We will accept return and exchange on most pieces. Items must be returned in unworn condition within 30 days of receipt. All returns will incur a 20% restocking fee. Read our Return & Refund Policy <a href=\"https://crownmoissanite.myshopify.com/pages/refund-policy\" target=\"_blank\" title=\"https://crownmoissanite.myshopify.com/pages/refund-policy\">here</a>.</p><h2></h2>",
+            "page": ""
+          }
+        },
+        "topic_JbKr3L": {
+          "type": "topic",
+          "settings": {
+            "is_open": false,
+            "title": "⛭ The ring I ordered doesn’t fit. Can you resize it?",
+            "content": "<p>✧ <strong>Yes, absolutely.</strong> As long as it’s a Crown Moissanite piece (that is not an eternity band version of one of our designs), we will resize it at minimal cost.</p><p>✨ <strong>Complimentary Resize Offer:</strong> We are pleased to offer <strong>one free ring resize within 30 days of purchase</strong>.</p><p>✧ <strong>Full Eternity Rings:</strong> Rings featuring a shank adorned with full eternity stones cannot be resized due to their intricate design. Instead, customers are encouraged to exchange the ring for the correct size. Our customer service team is happy to assist with this process.</p><p>✧ <strong>Unique Shank Designs:</strong> If your ring has a unique or intricate shank design, we will first inspect the ring and then inform you whether resizing is possible or not.</p><p>You can find more information about returns, resizing, and repairs here.<br/> Email us at <a href=\"mailto:support@crownmoissanite.com\" title=\"mailto:support@crownmoissanite.com\"><strong>support@crownmoissanite.com</strong></a> if you have any additional questions.</p><p><em><strong>Please note: </strong></em><em>Shipping charges for the resize service will be the customer’s responsibility.</em></p>",
+            "page": ""
+          }
+        },
+        "topic_AdWy96": {
+          "type": "topic",
+          "settings": {
+            "is_open": false,
+            "title": "⛭ What if i want to cancel my order before shipping?",
+            "content": "<p>If we receive your cancellation request within 24hours- we will refund you the full amount-else 20% restocking fee will be deducted</p>",
+            "page": ""
+          }
+        },
+        "topic_fg6q7M": {
+          "type": "topic",
+          "settings": {
+            "is_open": false,
+            "title": "⛭ I accidentally damaged my jewelry! What do I do?",
+            "content": "<p>✧ Don’t worry. We’ll take care of you! We’re happy to repair any piece you purchased from our collection, and we stand by our work.</p><p>We’re proud to provide our limited lifetime warranty for all of our pieces. So rest easy—Whenever your piece needs servicing, know that we’ll handle it with genuine care for as long as you own it. For more details, please visit our <a href=\"https://crownmoissanite.myshopify.com/pages/refund-policy\" target=\"_blank\" title=\"https://crownmoissanite.myshopify.com/pages/refund-policy\">Repairs</a> page.</p>",
+            "page": ""
+          }
+        },
+        "topic_drPA3B": {
+          "type": "topic",
+          "settings": {
+            "is_open": false,
+            "title": "⛭ How to take care of jewelry?",
+            "content": "<p>✧ Jewelry care is a very important part once you use them on a regular basis. Read our blog to get tips to care jewelry at your home... <a href=\"https://crownmoissanite.myshopify.com/pages/jewelry-care\" target=\"_blank\" title=\"https://crownmoissanite.myshopify.com/pages/jewelry-care\"><strong>REA</strong></a><a href=\"https://www.touchedoree.com/pages/10-tips-to-make-your-jewelry-shine-forever\" target=\"_blank\"><strong>D</strong></a></p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "topic_CFdLgM",
+        "topic_JbKr3L",
+        "topic_AdWy96",
+        "topic_fg6q7M",
+        "topic_drPA3B"
+      ],
+      "name": "t:sections.accordions.name",
+      "settings": {
+        "padding_vertical_desktop": "",
+        "padding_vertical_mobile": "",
+        "color_scheme_text": "text-colors-default",
+        "color_scheme_background": "background-colors-default",
+        "title": "Return, Resizes & Repairs"
+      }
+    },
+    "accordions_iTNECr": {
+      "type": "accordions",
+      "blocks": {
+        "topic_3WhJht": {
+          "type": "topic",
+          "settings": {
+            "is_open": false,
+            "title": "What is a Moissanite Tennis Necklace or Bracelet?",
+            "content": "<p>A Moissanite Tennis Necklace or Bracelet features a continuous row of sparkling moissanite stones set in a sleek and flexible line, designed to give a luxurious and timeless look.</p>",
+            "page": ""
+          }
+        },
+        "topic_UJGWwW": {
+          "type": "topic",
+          "settings": {
+            "is_open": false,
+            "title": "Are Moissanite Tennis Necklaces and Bracelets suitable for everyday wear?",
+            "content": "<p>Yes, Moissanite is highly durable (9.25 on the Mohs scale) and perfect for daily use. It maintains its brilliance even with regular wear.</p>",
+            "page": ""
+          }
+        },
+        "topic_Wxe9FN": {
+          "type": "topic",
+          "settings": {
+            "is_open": false,
+            "title": "Can I choose the length and carat size for my Moissanite Tennis Necklace or Bracelet?",
+            "content": "<p>Of course! Each piece can be customized in length, carat size, and metal type to fit your personal style and comfort.</p>",
+            "page": ""
+          }
+        },
+        "topic_JABrUU": {
+          "type": "topic",
+          "settings": {
+            "is_open": false,
+            "title": "What metal options are available for Moissanite Tennis Jewelry?",
+            "content": "<p>Our Tennis Necklaces and Bracelets are available in white, yellow, and rose gold (10K, 14K, and 18K), as well as sterling silver.</p>",
+            "page": ""
+          }
+        },
+        "topic_gVCRWV": {
+          "type": "topic",
+          "settings": {
+            "is_open": false,
+            "title": "How should I care for my Moissanite Tennis Necklace or Bracelet?",
+            "content": "<p>Clean it gently with warm water, mild soap, and a soft brush. Avoid harsh chemicals, and store separately to keep it scratch-free and shining.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "topic_3WhJht",
+        "topic_UJGWwW",
+        "topic_Wxe9FN",
+        "topic_JABrUU",
+        "topic_gVCRWV"
+      ],
+      "name": "t:sections.accordions.name",
+      "settings": {
+        "padding_vertical_desktop": "",
+        "padding_vertical_mobile": "",
+        "color_scheme_text": "text-colors-default",
+        "color_scheme_background": "background-colors-default",
+        "title": "Moissanite Tennis Collection"
+      }
+    }
+  },
+  "order": [
+    "e4a22221-96e8-47eb-8e41-ff9780104ed3",
+    "accordions_yxApA3",
+    "accordions",
+    "15d37dcd-dfe5-404c-80f1-8f76c2017e23",
+    "accordions_epKqxf",
+    "accordions_bxzxXw",
+    "accordions_iTNECr"
+  ]
+}

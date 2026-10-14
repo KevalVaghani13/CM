@@ -1,0 +1,357 @@
+{%- if section.blocks.size > 0 -%}
+  {% comment %} {{- 'swiper-bundle.min.css' | asset_url | stylesheet_tag -}} {% endcomment %}
+  {{- 'section-shop-the-look.css' | asset_url | stylesheet_tag -}}
+  {{- 'component-card-product.css' | asset_url | stylesheet_tag -}}
+
+  <script
+    src='{{- 'card-product-slider.js' | asset_url -}}'
+    defer='defer'
+  ></script>
+  <script
+    src='{{- 'shop-the-look-slider.js' | asset_url -}}'
+    defer='defer'
+  ></script>
+  <script
+    src='{{- 'card-product.js' | asset_url -}}'
+    defer='defer'
+  ></script>
+
+  {%- capture section_additional_classes -%}
+    {{ section.settings.color_scheme_text }} {{ section.settings.color_scheme_background }}
+  {%- endcapture -%}
+
+  {% style %}
+    .section-{{ section.id }} {
+      padding-block-start: calc(var(--section-spacing-unit-mobile) * {{ section.settings.spacing_top_mobile }});
+      padding-block-end: calc(var(--section-spacing-unit-mobile) * {{ section.settings.spacing_bottom_mobile }});
+    }
+    @media screen and (min-width: 990px) {
+      .section-{{ section.id }} {
+        padding-block-start: calc(var(--section-spacing-unit-desktop) * {{ section.settings.spacing_top_desktop }});
+        padding-block-end: calc(var(--section-spacing-unit-desktop) * {{ section.settings.spacing_bottom_desktop }});
+      }
+    }
+
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }} .shop-the-look__inner {
+        max-height: {{ section.settings.section_height | default: '60' }}vh;
+      }
+      .shop-the-look__title {
+        margin-block-end: calc(1.8rem * ({{ section.settings.section_height | default: '60' }} / 60));
+      }
+      .shop-the-look .card-product .relative {
+        margin: 0 20%;
+      }
+    }
+  {% endstyle %}
+
+  <section class='section section-{{ section.id }} color-body-background js-animation-fade-in {{ section_additional_classes | strip }}'>
+    <div class='shop-the-look'>
+      <div class='container'>
+        <shop-the-look-slider
+          class='shop-the-look__inner'
+          data-section-id='{{- section.id -}}'
+        >
+          {%- assign slider_dots_items_html = '' -%}
+
+          {%- capture item_slider_html -%}
+            <div class="shop-the-look__item shop-the-look__item--slider">
+              {%- if section.settings.title != blank -%}
+                <h3 class="shop-the-look__title h2">
+                  {{- section.settings.title -}}
+                </h3>
+              {%- endif -%}
+
+              <div class="swiper shop-the-look__swiper js-slider{% if section.blocks.size <= 2 %} shop-the-look__swiper--2{% endif %}">
+                <div class="swiper-wrapper">
+                  {%- for block in section.blocks -%}
+                    {%- if block.settings.product == blank -%}
+                      {%- continue -%}
+                    {%- endif -%}
+
+                    <div class="swiper-slide" data-index="{{- forloop.index0 -}}">
+                      {%- render 'card-product', product_ref: block.settings.product, section_id: section.id, card_index: forloop.index, card_product_layout: settings.card_product_layout, image_per_view: 2 -%}
+                    </div>
+
+                    {%- capture slider_dot_item_html -%}
+                      <li style="inset-block-start: {{ block.settings.dot_position_vertical }}%; inset-inline-start: {{ block.settings.dot_position_horizontal }}%;">
+                        <button
+                          class="pulse button-reset js-btn{% if forloop.first %} is-current{% endif %}"
+                          data-index="{{- forloop.index0 -}}"
+                          aria-label="{{- 'accessibility.jump_to_slide' | t: slide_index: forloop.index -}}"
+                          aria-current="{{- forloop.first -}}"
+                        ></button>
+                      </li>
+                    {%- endcapture -%}
+
+                    {%- assign slider_dots_items_html = slider_dots_items_html | append: slider_dot_item_html -%}
+                  {%- endfor -%}
+                </div>
+
+                {%- if section.blocks.size > 1 -%}
+                  <div class="swiper-buttons small-hide svg-color-inherit no-js-hidden">
+                    <button class="swiper-button swiper-button--prev">
+                      {%- render 'icon-arrow-end-small' -%}
+                    </button>
+
+                    <button class="swiper-button swiper-button--next">
+                      {%- render 'icon-arrow-end-small' -%}
+                    </button>
+                  </div>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endcapture -%}
+
+          {%- capture item_media_html -%}
+            <div class="shop-the-look__item shop-the-look__item--media">
+              <ul class="shop-the-look__dots js-slider-dots list-unstyled js-dots-list no-js-hidden">
+                {{ slider_dots_items_html }}
+              </ul>
+              <div class="media shop-the-look__media svg-color-inherit">
+                {%- liquid
+                  if section.settings.image_desktop != blank
+                    render 'image', image: section.settings.image_desktop, alt: section.settings.image_desktop.alt
+                  else
+                    echo 'image' | placeholder_svg_tag: 'placeholder-svg'
+                  endif
+                -%}
+              </div>
+            </div>
+          {%- endcapture -%}
+
+          {%- if section.settings.reverse_positions -%}
+            {{ item_media_html }}
+            {{ item_slider_html }}
+          {%- else -%}
+            {{ item_slider_html }}
+            {{ item_media_html }}
+          {%- endif -%}
+        </shop-the-look-slider>
+      </div>
+
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:sections.shop-the-look.name",
+  "settings": [
+    {
+      "type": "range",
+      "id": "section_height",
+      "label": "t:sections.global.settings.section_height.label",
+      "info": "t:sections.global.settings.section_height.info",
+      "min": 45,
+      "max": 100,
+      "step": 5,
+      "unit": "vh",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "t:sections.global.settings.header_padding_vertical.content"
+    },
+    {
+      "type": "range",
+      "id": "spacing_top_desktop",
+      "label": "t:sections.global.settings.spacing_top_desktop.label",
+      "min": 0,
+      "max": 6,
+      "step": 1,
+      "default": 6,
+      "unit": "x"
+    },
+    {
+      "type": "range",
+      "id": "spacing_bottom_desktop",
+      "label": "t:sections.global.settings.spacing_bottom_desktop.label",
+      "min": 0,
+      "max": 6,
+      "step": 1,
+      "default": 6,
+      "unit": "x"
+    },
+    {
+      "type": "range",
+      "id": "spacing_top_mobile",
+      "label": "t:sections.global.settings.spacing_top_mobile.label",
+      "min": 0,
+      "max": 6,
+      "step": 1,
+      "default": 6,
+      "unit": "x"
+    },
+    {
+      "type": "range",
+      "id": "spacing_bottom_mobile",
+      "label": "t:sections.global.settings.spacing_bottom_mobile.label",
+      "min": 0,
+      "max": 6,
+      "step": 1,
+      "default": 6,
+      "unit": "x"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.global.settings.header_color_scheme.content"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme_text",
+      "label": "t:sections.global.settings.color_scheme_text.label",
+      "options": [
+        {
+          "value": "text-colors-default",
+          "label": "t:sections.global.settings.color_scheme_text.options.default.label"
+        },
+        {
+          "value": "text-colors-secondary",
+          "label": "t:sections.global.settings.color_scheme_text.options.secondary.label"
+        },
+        {
+          "value": "text-colors-inverse",
+          "label": "t:sections.global.settings.color_scheme_text.options.inverse.label"
+        }
+      ],
+      "default": "text-colors-default"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme_background",
+      "label": "t:sections.global.settings.color_scheme_background.label",
+      "options": [
+        {
+          "value": "background-colors-default",
+          "label": "t:sections.global.settings.color_scheme_background.options.default.label"
+        },
+        {
+          "value": "background-colors-secondary",
+          "label": "t:sections.global.settings.color_scheme_background.options.secondary.label"
+        },
+        {
+          "value": "background-colors-accent-1",
+          "label": "t:sections.global.settings.color_scheme_background.options.accent_one.label"
+        },
+        {
+          "value": "background-colors-accent-2",
+          "label": "t:sections.global.settings.color_scheme_background.options.accent_two.label"
+        },
+        {
+          "value": "background-colors-inverse",
+          "label": "t:sections.global.settings.color_scheme_background.options.inverse.label"
+        }
+      ],
+      "default": "background-colors-default"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.shop-the-look.settings.header_general.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "reverse_positions",
+      "label": "t:sections.shop-the-look.settings.reverse_positions.label",
+      "info": "t:sections.shop-the-look.settings.reverse_positions.info"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.shop-the-look.settings.header_text.content"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "t:sections.shop-the-look.settings.title.label",
+      "default": "Essentials"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.shop-the-look.settings.header_media_desktop.content"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_desktop",
+      "label": "t:sections.shop-the-look.settings.image_desktop.label"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "t:sections.shop-the-look.blocks.slide.name",
+      "settings": [
+        {
+          "type": "header",
+          "content": "t:sections.shop-the-look.blocks.slide.settings.header_general.content"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "t:sections.shop-the-look.blocks.slide.settings.product.label"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.shop-the-look.blocks.slide.settings.header_dot_position.content",
+          "info": "t:sections.shop-the-look.blocks.slide.settings.header_dot_position.info"
+        },
+        {
+          "type": "range",
+          "id": "dot_position_horizontal",
+          "min": 1,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "t:sections.shop-the-look.blocks.slide.settings.dot_position_horizontal.label",
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "dot_position_vertical",
+          "min": 1,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "t:sections.shop-the-look.blocks.slide.settings.dot_position_vertical.label",
+          "default": 50
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.shop-the-look.name",
+      "blocks": [
+        {
+          "type": "slide",
+          "settings": {
+            "dot_position_horizontal": 25,
+            "dot_position_vertical": 25
+          }
+        },
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "dot_position_horizontal": 75,
+            "dot_position_vertical": 75
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "                    render 'image', image: section.settings.image_desktop,
+    alt: section.settings.image_desktop.alt | escape"
+  to: "                    render 'image', image: section.settings.image_desktop,
+    alt: section.settings.image_desktop.alt"
+  position: 5037..5151
+{% endcomment %}

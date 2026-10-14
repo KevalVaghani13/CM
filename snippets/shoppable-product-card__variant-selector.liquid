@@ -1,0 +1,53 @@
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+{%- if product.has_only_default_variant == false -%}
+  <div class='product-selector'>
+    <input type='hidden' name='id' value='{{- current_variant.id -}}'>
+
+    {%- capture color_codes -%}{%- render 'color-codes-to-check' -%}{%- endcapture -%}
+
+    {%- for option in product.options_with_values -%}
+      {%- liquid
+        assign name = 'options[' | append: option.name | append: ']'
+        assign option_is_color = false
+        if option.name == settings.swatches_option
+          assign option_is_color = true
+        endif
+      -%}
+      <fieldset class='product-selector__buttons'>
+        <legend class='product-selector__label'>
+          {{- option.name -}}
+        </legend>
+        <div class='product__swatches swatches'>
+          <ul class='list-unstyled'>
+            {%- for value in option.values -%}
+              <li>
+                {%- liquid
+                  assign attr = ''
+                  assign show_label = false
+                  assign swatch_class = 'product__swatch '
+                  if option_is_color
+                    assign swatch_class = swatch_class | append: 'product__swatch--color'
+                  else
+                    assign swatch_class = swatch_class | append: 'product__swatch--button'
+                    assign show_label = true
+                  endif
+                  if option.selected_value == value
+                    assign swatch_class = swatch_class | append: ' is-active'
+                    assign attr = 'checked'
+                  endif
+                  assign swatch_id = section.id | append: '-' | append: product.id | append: '-' | append: value
+                  render 'product-swatch', value: value, colors_for_check: color_codes, class: swatch_class, name: name, attr: attr, show_label: show_label, product_handle: product.handle, id: swatch_id
+                -%}
+              </li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      </fieldset>
+    {%- endfor -%}
+    <script data-product-variants-json type='application/json'>
+      {{- product.variants | json -}}
+    </script>
+  </div>
+{%- else -%}
+  <input type='hidden' name='id' value='{{- current_variant.id -}}'>
+{%- endif -%}

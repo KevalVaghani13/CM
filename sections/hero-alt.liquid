@@ -1,0 +1,304 @@
+{%- if section.blocks.size > 0 -%}
+  {{- 'section-hero-alt.css' | asset_url | stylesheet_tag -}}
+
+  {%- capture section_additional_classes -%}
+    {{ section.settings.color_scheme_text }} {{ section.settings.color_scheme_background }} {{ section.settings.padding_vertical_desktop }} {{ section.settings.padding_vertical_mobile }}
+  {%- endcapture -%}
+
+  {% style %}
+    .section-{{ section.id }}{
+      --hero-alt-banner-height: {{ section.settings.hero_alt_banner_height | default: '50' | append: 'vh' }};
+    }
+  {% endstyle %}
+
+  <section class="section-{{ section.id }} hero-alt js-animation-fade-in {{ section_additional_classes | strip }}">
+    <div class="container hero-alt__container">
+      <div class="hero-alt__inner">
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+          {%- when 'text' -%}
+            <div class="hero-alt__body">
+              <div class="hero-alt__content">
+                {%- if block.settings.subtitle != blank -%}
+                  <p class="hero-alt__subtitle text-navigation-button">
+                    {{- block.settings.subtitle | escape -}}
+                  </p>
+                {%- endif -%}
+
+                <h1 class="hero-alt__title">
+                  {{- block.settings.title | default: page.title | default: page_title -}}
+                </h1>
+
+                {%- if block.settings.content != blank -%}
+                  <div class="hero-alt__entry entry entry--list-padding-none h4">
+                    {{- block.settings.content -}}
+                  </div>
+                {%- endif -%}
+                {%- if block.settings.button_separator == true -%}
+                  <div class="hero-alt__content--separator"></div>
+                {%- endif -%}
+                {%- if block.settings.button_text != blank and block.settings.button_url != blank -%}
+                  <div class="hero-alt__button">
+                    {%- render 'button',
+                      type: 'link',
+                      class: 'button',
+                      button_style: block.settings.button_style,
+                      value: block.settings.button_text,
+                      href: block.settings.button_url
+                    -%}
+                  </div>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- when 'media' -%}
+            <div class="hero-alt__head">
+              <div class="media hero-alt__media svg-color-inherit">
+                {%- liquid
+                  if block.settings.image != blank
+                    render 'image', image: block.settings.image, image_url_width: 2160, alt: block.settings.image.alt
+                  else
+                    echo 'image' | placeholder_svg_tag: 'placeholder-svg'
+                  endif
+                -%}
+              </div>
+            </div>
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:sections.hero-alt.name",
+  "settings": [
+    {
+      "type": "range",
+      "id": "hero_alt_banner_height",
+      "label": "t:sections.hero-alt.settings.banner_height.label",
+      "info": "t:sections.hero-alt.settings.banner_height.info",
+      "min": 40,
+      "max": 100,
+      "step": 10,
+      "unit": "vh",
+      "default": 50
+    },
+    {
+      "type": "header",
+      "content": "t:sections.global.settings.header_padding_vertical.content"
+    },
+    {
+      "type": "select",
+      "id": "padding_vertical_desktop",
+      "label": "t:sections.global.settings.padding_vertical_desktop.label",
+      "options": [
+        {
+          "value": "",
+          "label": "t:sections.global.settings.padding_vertical_desktop.options.default.label"
+        },
+        {
+          "value": "pt-0-desktop",
+          "label": "t:sections.global.settings.padding_vertical_desktop.options.top_none.label"
+        },
+        {
+          "value": "pb-0-desktop",
+          "label": "t:sections.global.settings.padding_vertical_desktop.options.bottom_none.label"
+        },
+        {
+          "value": "pt-0-desktop pb-0-desktop",
+          "label": "t:sections.global.settings.padding_vertical_desktop.options.top_bottom_none.label"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "padding_vertical_mobile",
+      "label": "t:sections.global.settings.padding_vertical_mobile.label",
+      "options": [
+        {
+          "value": "",
+          "label": "t:sections.global.settings.padding_vertical_mobile.options.default.label"
+        },
+        {
+          "value": "pt-0-mobile",
+          "label": "t:sections.global.settings.padding_vertical_mobile.options.top_none.label"
+        },
+        {
+          "value": "pb-0-mobile",
+          "label": "t:sections.global.settings.padding_vertical_mobile.options.bottom_none.label"
+        },
+        {
+          "value": "pt-0-mobile pb-0-mobile",
+          "label": "t:sections.global.settings.padding_vertical_mobile.options.top_bottom_none.label"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "t:sections.global.settings.header_color_scheme.content"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme_text",
+      "label": "t:sections.global.settings.color_scheme_text.label",
+      "options": [
+        {
+          "value": "text-colors-default",
+          "label": "t:sections.global.settings.color_scheme_text.options.default.label"
+        },
+        {
+          "value": "text-colors-secondary",
+          "label": "t:sections.global.settings.color_scheme_text.options.secondary.label"
+        },
+        {
+          "value": "text-colors-inverse",
+          "label": "t:sections.global.settings.color_scheme_text.options.inverse.label"
+        }
+      ],
+      "default": "text-colors-default"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme_background",
+      "label": "t:sections.global.settings.color_scheme_background.label",
+      "options": [
+        {
+          "value": "background-colors-default",
+          "label": "t:sections.global.settings.color_scheme_background.options.default.label"
+        },
+        {
+          "value": "background-colors-secondary",
+          "label": "t:sections.global.settings.color_scheme_background.options.secondary.label"
+        },
+        {
+          "value": "background-colors-accent-1",
+          "label": "t:sections.global.settings.color_scheme_background.options.accent_one.label"
+        },
+        {
+          "value": "background-colors-accent-2",
+          "label": "t:sections.global.settings.color_scheme_background.options.accent_two.label"
+        },
+        {
+          "value": "background-colors-inverse",
+          "label": "t:sections.global.settings.color_scheme_background.options.inverse.label"
+        }
+      ],
+      "default": "background-colors-accent-2"
+    }
+  ],
+  "max_blocks": 2,
+  "blocks": [
+    {
+      "type": "text",
+      "limit": 1,
+      "name": "t:sections.hero-alt.blocks.text.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "t:sections.hero-alt.blocks.text.settings.subtitle.label",
+          "default": "Highlight your promotion"
+        },
+        {
+          "type": "textarea",
+          "id": "title",
+          "label": "t:sections.hero-alt.blocks.text.settings.title.label",
+          "default": "Highlight an image"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "t:sections.hero-alt.blocks.text.settings.content.label",
+          "default": "<p>Add text to describe your promotion.</p>"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.hero-banner.blocks.slide.settings.header_button.content"
+        },
+        {
+          "type": "select",
+          "id": "button_style",
+          "label": "t:sections.global.settings.button_style.label",
+          "options": [
+            {
+              "value": "button--filled",
+              "label": "t:sections.global.settings.button_style.options.filled.label"
+            },
+            {
+              "value": "button--outlined",
+              "label": "t:sections.global.settings.button_style.options.outlined.label"
+            },
+            {
+              "value": "button--outlined-inverse",
+              "label": "t:sections.global.settings.button_style.options.outlined_inverse.label"
+            },
+            {
+              "value": "default",
+              "label": "t:sections.global.settings.button_style.options.default.label"
+            }
+          ],
+          "info": "t:sections.global.settings.button_style.info",
+          "default": "button--filled"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "t:sections.hero-banner.blocks.slide.settings.button_text.label",
+          "default": "View more"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "t:sections.hero-banner.blocks.slide.settings.button_url.label",
+          "default": "/"
+        },
+        {
+          "type": "checkbox",
+          "id": "button_separator",
+          "label": "t:sections.hero-alt.blocks.text.settings.button_separator.label",
+          "info": "t:sections.hero-alt.blocks.text.settings.button_separator.info",
+          "default": true
+        }
+      ]
+    },
+    {
+      "type": "media",
+      "limit": 1,
+      "name": "t:sections.hero-alt.blocks.media.name",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.hero-alt.blocks.media.settings.image.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.hero-alt.name",
+      "blocks": [
+        {
+          "type": "text"
+        },
+        {
+          "type": "media"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "                    render 'image', image: block.settings.image, image_url_width:
+    2160, alt: block.settings.image.alt | escape"
+  to: "                    render 'image', image: block.settings.image, image_url_width:
+    2160, alt: block.settings.image.alt"
+  position: 2523..2640
+{% endcomment %}

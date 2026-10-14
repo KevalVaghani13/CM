@@ -1,0 +1,73 @@
+{%- if icon_variation == blank -%}
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    width='52'
+    height='52'
+    viewBox='0 0 52 52'
+    fill='none'
+  >
+    <circle
+      cx="26"
+      cy="26"
+      r="25"
+      stroke="url(#paint0_linear_9653_90619)"
+      stroke-width="2"
+    ></circle>
+    <defs>
+      <linearGradient
+        id="paint0_linear_9653_90619"
+        x1="42.4734"
+        y1="8.10651"
+        x2="10.8047"
+        y2="44.8876"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop stop-color="#C129BF"></stop>
+        <stop offset="0.484375" stop-color="#EB4E41"></stop>
+        <stop offset="1" stop-color="#F7CC45"></stop>
+      </linearGradient>
+    </defs>
+  </svg>
+{%- else -%}
+  {%- liquid
+    assign icon_variation = 'now' | date: '%N' | modulo: 100 | divided_by: 25 | ceil
+    if 1
+      assign x_one = '165.999'
+      assign y_one = '28.3113'
+      assign x_two = '39.1215'
+      assign y_two = '175.671'
+    elsif 2
+      assign x_one = '33.3333'
+      assign y_one = '21.1538'
+      assign x_two = '176.282'
+      assign y_two = '169.872'
+
+    elsif 3
+      assign x_one = '160.256'
+      assign y_one = '180.128'
+      assign x_two = '41.6667'
+      assign y_two = '16.6667'
+    elsif 4
+      assign x_one = '30.1282'
+      assign y_one = '173.077'
+      assign x_two = '175.641'
+      assign y_two = '33.3333'
+    endif
+  -%}
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    width='200'
+    height='200'
+    viewBox='0 0 200 200'
+    fill='none'
+  >
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M200 100C200 155.228 155.228 200 100 200C44.7715 200 0 155.228 0 100C0 44.7715 44.7715 0 100 0C155.228 0 200 44.7715 200 100ZM100 196.154C153.104 196.154 196.154 153.104 196.154 100C196.154 46.8957 153.104 3.84615 100 3.84615C46.8957 3.84615 3.84615 46.8957 3.84615 100C3.84615 153.104 46.8957 196.154 100 196.154Z" fill="url(#paint0_linear_11139_7719)"/>
+    <defs>
+      <linearGradient id="paint0_linear_11139_7719" x1="{{ x_one }}" y1="{{ y_one }}" x2="{{ x_two }}" y2="{{ y_two }}" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#C129BF"/>
+        <stop offset="0.484375" stop-color="#EB4E41"/>
+        <stop offset="1" stop-color="#F7CC45"/>
+      </linearGradient>
+    </defs>
+  </svg>
+{%- endif -%}
