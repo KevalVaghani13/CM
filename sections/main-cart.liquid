@@ -34,15 +34,6 @@
               <span>{{- 'cart.subtotal' | t -}}:</span>
               <span>{{- cart.total_price | money -}}</span>
             </h4>
-{% if line_item.properties != blank %}
-  <ul class="line-item-properties" style="margin: 5px 0; font-size: 0.9em; color: #444;">
-    {% for p in line_item.properties %}
-      {% unless p.last == blank %}
-        <li><strong>{{ p.first }}:</strong> {{ p.last }}</li>
-      {% endunless %}
-    {% endfor %}
-  </ul>
-{% endif %}
             {{ form | payment_terms }}
 
             <p class="cart__summary-tax">
